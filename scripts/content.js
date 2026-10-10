@@ -11,7 +11,9 @@
 
 // Prevent multiple script execution
 if (window.checkExtensionLoaded) {
-  console.warn(
+  // Expected when the script is injected into an already open tab (install or update) as well as by the
+  // manifest. Logged at debug level so it does not show in chrome://extensions Errors (Bailey 1.0.3).
+  console.debug(
     "[M365-Protection] Content script already loaded, skipping re-execution"
   );
 } else {
