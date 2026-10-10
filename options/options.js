@@ -997,7 +997,8 @@ class CheckOptions {
     }
 
     // Logging settings
-    this.elements.enableDeveloperConsoleLogging.checked =
+    // The Developer Mode switch was removed in 1.0.4 (Nikhil 2026-10-10); guard the old element.
+    if (this.elements.enableDeveloperConsoleLogging) this.elements.enableDeveloperConsoleLogging.checked =
       this.config.enableDeveloperConsoleLogging || false;
 
     // Development settings (only visible in dev mode)
