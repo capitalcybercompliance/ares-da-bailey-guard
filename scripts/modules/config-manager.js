@@ -126,17 +126,6 @@ export class ConfigManager {
             logDetections: true,
           },
           // Note: enableDeveloperConsoleLogging is not policy-managed - remains under user control
-
-          // Custom branding (matches managed_schema.json structure)
-          customBranding: {
-            companyName: "Cyber Grants Alliance",
-            productName: "Bailey Guard by CGA",
-            supportUrl: "",
-            privacyPolicyUrl: "",
-            aboutUrl: "",
-            primaryColor: "#165DFB",
-            logoUrl: "images/icon48.png",
-          },
         };
       }
 
@@ -179,15 +168,7 @@ export class ConfigManager {
         }
       };
 
-      // First, try to load user-configured branding from storage
-      const userBranding = await safe(
-        storage.local.get(["brandingConfig"])
-      );
-
-      if (userBranding && userBranding.brandingConfig) {
-        logger.log("Bailey Guard: Using user-configured branding from storage");
-        return userBranding.brandingConfig;
-      }
+      // Branding is fixed to Bailey Guard by CGA: white labeling was removed (Nikhil 2026-10-10).
 
       // Fallback: Load branding configuration from config file with timeout
       const controller = new AbortController();
@@ -216,15 +197,8 @@ export class ConfigManager {
   mergeConfigurations(localConfig, enterpriseConfig, brandingConfig) {
     const defaultConfig = this.getDefaultConfig();
 
-    // Handle enterprise custom branding separately
-    let finalBrandingConfig = brandingConfig;
-    if (enterpriseConfig.customBranding) {
-      // Enterprise custom branding takes precedence over file-based branding
-      finalBrandingConfig = {
-        ...brandingConfig,
-        ...enterpriseConfig.customBranding,
-      };
-    }
+    // Enterprise custom branding is ignored: white labeling was removed (Nikhil 2026-10-10)
+    const finalBrandingConfig = brandingConfig;
 
     // Merge in order of precedence: enterprise > local > branding > default
     const merged = {
@@ -500,15 +474,6 @@ export class ConfigManager {
       ...defaultBranding,
       ...(await this.getBrandingConfig()),
     };
-
-    // If enterprise has custom branding, merge it in (takes precedence)
-    if (this.enterpriseConfig && this.enterpriseConfig.customBranding) {
-      finalBranding = {
-        ...finalBranding,
-        ...this.enterpriseConfig.customBranding,
-      };
-      logger.log("Bailey Guard: Applied enterprise custom branding");
-    }
 
     // Include genericWebhook from config if available
     const currentConfig = await this.getConfig();

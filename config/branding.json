@@ -4,7 +4,7 @@
   "supportUrl": "https://www.cybergrantsalliance.org/",
   "privacyPolicyUrl": "https://www.cybergrantsalliance.org/",
   "aboutUrl": "https://www.cybergrantsalliance.org/",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bailey barks before you type your Microsoft 365 password into a fake sign in page.",
   "branding": {
     "primaryColor": "#165DFB",
@@ -37,10 +37,10 @@
   },
   "customization": {
     "showCompanyBranding": true,
-    "allowUserCustomization": true,
-    "enableWhiteLabeling": true,
-    "customCssEnabled": true,
-    "customIconsEnabled": true
+    "allowUserCustomization": false,
+    "enableWhiteLabeling": false,
+    "customCssEnabled": false,
+    "customIconsEnabled": false
   },
   "features": {
     "welcomeMessage": "Hi, I am Bailey. I watch for fake Microsoft 365 sign in pages so you do not hand your password to a scammer.",
@@ -63,24 +63,6 @@
   },
   "socialMedia": {
     "website": "https://www.cybergrantsalliance.org/"
-  },
-  "whiteLabel": {
-    "enabled": true,
-    "allowCustomColors": true,
-    "allowCustomLogos": true,
-    "allowCustomText": true,
-    "allowCustomIcons": true,
-    "allowCustomCss": true,
-    "preserveAttribution": false,
-    "customizableElements": [
-      "extension_name",
-      "company_name",
-      "logo",
-      "colors",
-      "contact_info",
-      "support_links",
-      "custom_css"
-    ]
   },
   "licensing": {
     "license": "AGPL-3.0",

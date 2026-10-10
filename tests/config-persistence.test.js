@@ -236,7 +236,7 @@ test('ConfigManager - merge precedence', async (t) => {
   teardownGlobalChrome();
 });
 
-test('ConfigManager - branding links for manual and enterprise config', async (t) => {
+test('ConfigManager - branding cannot be white labeled (Nikhil 2026-10-10)', async (t) => {
   const chromeMock = setupGlobalChrome();
 
   global.fetch = async () => ({
@@ -246,9 +246,10 @@ test('ConfigManager - branding links for manual and enterprise config', async (t
 
   const { ConfigManager } = await import('../scripts/modules/config-manager.js');
 
-  await t.test('should honor explicit support/privacy/about URLs from enterprise custom branding', async () => {
+  await t.test('should ignore enterprise custom branding', async () => {
     chromeMock.storage.managed.set({
       customBranding: {
+        productName: 'Someone Else Guard',
         supportUrl: 'https://enterprise.example/support',
         privacyPolicyUrl: 'https://enterprise.example/privacy',
         aboutUrl: 'https://enterprise.example/about'
@@ -257,26 +258,27 @@ test('ConfigManager - branding links for manual and enterprise config', async (t
 
     const configManager = new ConfigManager();
     const branding = await configManager.getFinalBrandingConfig();
+    const defaultBranding = configManager.getDefaultBrandingConfig();
 
-    assert.strictEqual(branding.supportUrl, 'https://enterprise.example/support');
-    assert.strictEqual(branding.privacyPolicyUrl, 'https://enterprise.example/privacy');
-    assert.strictEqual(branding.aboutUrl, 'https://enterprise.example/about');
+    assert.notStrictEqual(branding.productName, 'Someone Else Guard');
+    assert.strictEqual(branding.supportUrl, defaultBranding.supportUrl);
+    assert.strictEqual(branding.privacyPolicyUrl, defaultBranding.privacyPolicyUrl);
+    assert.strictEqual(branding.aboutUrl, defaultBranding.aboutUrl);
   });
 
-  await t.test('should derive support link from supportEmail when URLs are not set', async () => {
+  await t.test('should ignore user branding saved in local storage', async () => {
     await chromeMock.storage.local.set({
       brandingConfig: {
+        productName: 'Someone Else Guard',
         supportEmail: 'help@manual.example'
       }
     });
 
     const configManager = new ConfigManager();
     const branding = await configManager.getFinalBrandingConfig();
-    const defaultBranding = configManager.getDefaultBrandingConfig();
 
-    assert.strictEqual(branding.supportUrl, 'mailto:help@manual.example');
-    assert.strictEqual(branding.privacyPolicyUrl, defaultBranding.privacyPolicyUrl);
-    assert.strictEqual(branding.aboutUrl, defaultBranding.aboutUrl);
+    assert.notStrictEqual(branding.productName, 'Someone Else Guard');
+    assert.notStrictEqual(branding.supportUrl, 'mailto:help@manual.example');
   });
 
   delete global.fetch;

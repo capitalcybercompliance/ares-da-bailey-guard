@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Bailey Guard by CGA",
   "short_name": "Bailey Guard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bailey barks before you type your Microsoft 365 password into a fake sign in page. A no cost tool from Cyber Grants Alliance.",
   "permissions": [
     "storage",

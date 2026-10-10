@@ -1609,20 +1609,6 @@ class CheckBackground {
           }
           break;
 
-        case "UPDATE_BRANDING":
-          try {
-            // Refresh config manager cache to pick up new branding from storage
-            await this.configManager.refreshConfig();
-
-            // Apply branding changes immediately
-            await this.applyBrandingToAction();
-            sendResponse({ success: true });
-          } catch (error) {
-            logger.error("Bailey Guard: Failed to update branding:", error);
-            sendResponse({ success: false, error: error.message });
-          }
-          break;
-
         case "TEST_DETECTION_RULES":
           const testResults = await this.testDetectionRules(message.testData);
           sendResponse({ success: true, results: testResults });

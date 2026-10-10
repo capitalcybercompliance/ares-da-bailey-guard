@@ -98,18 +98,6 @@ class CheckOptions {
     this.elements.clearLogs = document.getElementById("clearLogs");
     this.elements.exportLogs = document.getElementById("exportLogs");
     this.elements.logsList = document.getElementById("logsList");
-
-    // Branding
-    this.elements.companyName = document.getElementById("companyName");
-    this.elements.productName = document.getElementById("productName");
-    this.elements.supportEmail = document.getElementById("supportEmail");
-    this.elements.supportUrl = document.getElementById("supportUrl");
-    this.elements.privacyPolicyUrl = document.getElementById("privacyPolicyUrl");
-    this.elements.aboutUrl = document.getElementById("aboutUrl");
-    this.elements.primaryColor = document.getElementById("primaryColor");
-    this.elements.logoUrl = document.getElementById("logoUrl");
-    this.elements.brandingPreview = document.getElementById("brandingPreview");
-    this.elements.previewLogo = document.getElementById("previewLogo");
     this.elements.previewTitle = document.getElementById("previewTitle");
     this.elements.previewButton = document.getElementById("previewButton");
 
@@ -197,23 +185,6 @@ class CheckOptions {
     this.elements.copyRulesBtn?.addEventListener("click", () => this.copyPlaygroundRules());
     this.elements.clearPlaygroundBtn?.addEventListener("click", () => this.clearPlayground());
     this.elements.loadCurrentRulesBtn?.addEventListener("click", () => this.loadCurrentRulesIntoPlayground());
-
-    // Branding preview updates
-    const brandingInputs = [
-      this.elements.companyName,
-      this.elements.productName,
-      this.elements.supportUrl,
-      this.elements.privacyPolicyUrl,
-      this.elements.aboutUrl,
-      this.elements.primaryColor,
-      this.elements.logoUrl,
-    ];
-
-    brandingInputs.forEach((input) => {
-      if (input) {
-        input.addEventListener("input", () => this.updateBrandingPreview());
-      }
-    });
 
     // Validate timeout input
     if (this.elements.validPageBadgeTimeout) {
@@ -324,8 +295,6 @@ class CheckOptions {
       await this.loadLogs();
       // Handle initial hash
       this.handleHashChange();
-      // Update branding preview
-      this.updateBrandingPreview();
       this.showToast("Settings loaded successfully", "success");
     } catch (error) {
       console.error("Failed to initialize options page:", error);
@@ -1036,18 +1005,6 @@ class CheckOptions {
       this.elements.simulateEnterpriseMode.checked =
         this.simulateEnterpriseMode;
     }
-
-    // Branding settings
-    this.elements.companyName.value = this.brandingConfig?.companyName || "";
-    this.elements.productName.value = this.brandingConfig?.productName || "";
-    this.elements.supportEmail.value = this.brandingConfig?.supportEmail || "";
-    this.elements.supportUrl.value = this.brandingConfig?.supportUrl || "";
-    this.elements.privacyPolicyUrl.value =
-      this.brandingConfig?.privacyPolicyUrl || "";
-    this.elements.aboutUrl.value = this.brandingConfig?.aboutUrl || "";
-    this.elements.primaryColor.value =
-    this.brandingConfig?.primaryColor || "#165DFB";
-    this.elements.logoUrl.value = this.brandingConfig?.logoUrl || "";
   }
 
   switchSection(sectionName) {
@@ -1078,10 +1035,6 @@ class CheckOptions {
       logs: {
         title: "Activity Logs",
         subtitle: "View security events and extension activity",
-      },
-      branding: {
-        title: "Branding & White Labeling",
-        subtitle: "Customize the extension's appearance and branding",
       },
       about: {
         title: "About Bailey Guard by CGA",
@@ -1135,7 +1088,6 @@ class CheckOptions {
   async saveSettings() {
     try {
       const newConfig = this.gatherFormData();
-      const newBranding = this.gatherBrandingData();
 
       // Validate configuration
       const validation = this.validateConfiguration(newConfig);
@@ -1149,45 +1101,6 @@ class CheckOptions {
         type: "UPDATE_CONFIG",
         config: newConfig,
       });
-
-      // Save branding configuration separately
-      try {
-        await new Promise((resolve, reject) => {
-          chrome.storage.local.set({ brandingConfig: newBranding }, () => {
-            if (chrome.runtime.lastError) {
-              reject(new Error(chrome.runtime.lastError.message));
-            } else {
-              resolve();
-            }
-          });
-        });
-
-        this.brandingConfig = newBranding;
-        console.log("Branding config saved:", newBranding);
-
-        // Notify background script to update branding
-        try {
-          const brandingResponse = await this.sendMessage({
-            type: "UPDATE_BRANDING",
-          });
-
-          if (brandingResponse && brandingResponse.success) {
-            console.log("Background script updated with new branding");
-          } else {
-            console.warn(
-              "Failed to notify background script of branding update"
-            );
-          }
-        } catch (brandingNotifyError) {
-          console.error(
-            "Failed to notify background script:",
-            brandingNotifyError
-          );
-        }
-      } catch (brandingError) {
-        console.error("Failed to save branding config:", brandingError);
-        this.showToast("Failed to save branding settings", "warning");
-      }
 
       if (response && response.success) {
         this.config = newConfig;
@@ -1289,13 +1202,6 @@ class CheckOptions {
     if (this.managedPolicies && Object.keys(this.managedPolicies).length > 0) {
       const filteredData = {};
       const managedSettingsList = Object.keys(this.managedPolicies);
-
-      // Add custom branding properties to managed list if present
-      if (this.managedPolicies.customBranding) {
-        managedSettingsList.push(
-          ...Object.keys(this.managedPolicies.customBranding)
-        );
-      }
 
       // Only include settings that are NOT managed by policy
       Object.keys(formData).forEach((key) => {
@@ -1399,19 +1305,6 @@ class CheckOptions {
     } catch (error) {
       return { valid: false, error: error.message };
     }
-  }
-
-  gatherBrandingData() {
-    return {
-      companyName: this.elements.companyName.value,
-      productName: this.elements.productName.value,
-      supportEmail: this.elements.supportEmail.value,
-      supportUrl: this.elements.supportUrl.value,
-      privacyPolicyUrl: this.elements.privacyPolicyUrl.value,
-      aboutUrl: this.elements.aboutUrl.value,
-      primaryColor: this.elements.primaryColor.value,
-      logoUrl: this.elements.logoUrl.value,
-    };
   }
 
   async loadDefaultDetectionRules() {
@@ -2522,17 +2415,6 @@ class CheckOptions {
           updateInterval: 24,
           enableDebugLogging: false,
           // Note: enableDeveloperConsoleLogging is not policy-managed - remains under user control
-
-          // Custom branding (matches managed_schema.json structure)
-          customBranding: {
-            companyName: "Cyber Grants Alliance",
-            productName: "Bailey Guard by CGA",
-            supportUrl: "",
-            privacyPolicyUrl: "",
-            aboutUrl: "",
-            primaryColor: "#165DFB",
-            logoUrl: "images/icon48.png",
-          },
         };
 
         isManaged = true;
@@ -2556,15 +2438,6 @@ class CheckOptions {
 
         // Store managed policies for use during saving
         this.managedPolicies = policies;
-
-        // Update branding configuration with managed custom branding
-        if (policies.customBranding) {
-          this.brandingConfig = policies.customBranding;
-          console.log(
-            "Updated branding with managed custom branding:",
-            this.brandingConfig
-          );
-        }
 
         // Show policy badge
         if (this.elements.policyBadge) {
@@ -2677,35 +2550,12 @@ class CheckOptions {
       domainSquatting: this.elements.domainSquattingEnabled,
       enableDebugLogging: this.elements.enableDebugLogging,
       // Note: enableDeveloperConsoleLogging is excluded - should remain available for debugging
-      // Branding fields (if customBranding policy is present)
-      companyName: this.elements.companyName,
-      productName: this.elements.productName,
-      supportEmail: this.elements.supportEmail,
-      supportUrl: this.elements.supportUrl,
-      privacyPolicyUrl: this.elements.privacyPolicyUrl,
-      aboutUrl: this.elements.aboutUrl,
-      primaryColor: this.elements.primaryColor,
-      logoUrl: this.elements.logoUrl,
     };
 
     Object.keys(policies).forEach((policyKey) => {
-      if (policyKey === "customBranding" && policies.customBranding) {
-        // Handle nested branding policies
-        Object.keys(policies.customBranding).forEach((brandingKey) => {
-          const element = policyFieldMap[brandingKey];
-          if (element) {
-            this.disableFieldWithPolicy(
-              element,
-              `customBranding.${brandingKey}`
-            );
-          }
-        });
-      } else {
-        // Handle top-level policies
-        const element = policyFieldMap[policyKey];
-        if (element) {
-          this.disableFieldWithPolicy(element, policyKey);
-        }
+      const element = policyFieldMap[policyKey];
+      if (element) {
+        this.disableFieldWithPolicy(element, policyKey);
       }
     });
   }
@@ -2752,12 +2602,6 @@ class CheckOptions {
       this.elements.urlAllowlist,
       this.elements.domainSquattingEnabled,
       this.elements.enableDebugLogging,
-      this.elements.companyName,
-      this.elements.companyURL,
-      this.elements.productName,
-      this.elements.supportEmail,
-      this.elements.primaryColor,
-      this.elements.logoUrl,
     ];
 
     allFields.forEach((element) => {
@@ -3425,26 +3269,6 @@ class CheckOptions {
         this.elements.refreshDetectionRules.disabled = false;
       }
     }
-  }
-
-  updateBrandingPreview() {
-    const productName =
-      this.elements.productName.value || this.brandingConfig.productName;
-    const primaryColor =
-      this.elements.primaryColor.value || this.brandingConfig.primaryColor;
-    const logoUrl = this.elements.logoUrl.value || this.brandingConfig.logoUrl;
-
-    this.elements.previewTitle.textContent = productName;
-    this.elements.previewButton.style.backgroundColor = primaryColor;
-
-    if (logoUrl) {
-      this.elements.previewLogo.src = logoUrl.startsWith("http")
-        ? logoUrl
-        : chrome.runtime.getURL(logoUrl);
-    }
-
-    // Apply primary color to the options page interface itself
-    this.applyPrimaryColorToOptionsPage(primaryColor);
   }
 
   applyPrimaryColorToOptionsPage(primaryColor) {
