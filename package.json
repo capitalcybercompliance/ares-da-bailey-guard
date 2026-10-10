@@ -1,20 +1,14 @@
 {
-  "name": "Check",
-  "version": "1.2.0",
-  "description": "An open-source, Manifest V3 browser extension for detecting phishing attacks that impersonate Microsoft 365 sign-in pages.",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "name": "bailey-guard-by-cga",
+  "version": "1.0.0",
+  "description": "Bailey Guard by CGA: a no cost Chrome extension that warns before you type your Microsoft 365 password into a fake sign in page. Based on Check by CyberDrain.",
   "scripts": {
-    "test": "node --test tests/**/*.test.js",
-    "test:config": "node --test tests/config-persistence.test.js",
-    "build:chrome": "node scripts/build.js chrome",
-    "build:firefox": "node scripts/build.js firefox"
+    "test": "node --test tests/",
+    "package": "bun scripts/package.ts"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Cyber Grants Alliance",
+  "license": "AGPL-3.0-only",
   "type": "module",
   "devDependencies": {
     "jsdom": "^26.1.0"

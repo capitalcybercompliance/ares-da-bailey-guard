@@ -1,3 +1,4 @@
+/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Policy Manager for Check
  * Handles enterprise policies, permissions, and compliance enforcement
@@ -19,9 +20,9 @@ export class PolicyManager {
     try {
       await this.loadPolicies();
       this.isInitialized = true;
-      logger.log("Check: Policy manager initialized successfully");
+      logger.log("Bailey Guard: Policy manager initialized successfully");
     } catch (error) {
-      logger.error("Check: Failed to initialize policy manager:", error);
+      logger.error("Bailey Guard: Failed to initialize policy manager:", error);
       throw error;
     }
   }
@@ -48,9 +49,9 @@ export class PolicyManager {
       // Set compliance mode based on enterprise policies
       this.complianceMode = this.enterprisePolicies?.complianceMode || false;
 
-      logger.log("Check: Policies loaded successfully");
+      logger.log("Bailey Guard: Policies loaded successfully");
     } catch (error) {
-      logger.error("Check: Failed to load policies:", error);
+      logger.error("Bailey Guard: Failed to load policies:", error);
       this.loadDefaultPolicies();
     }
   }
@@ -64,7 +65,7 @@ export class PolicyManager {
       
       // Firefox uses 3rdparty extension policies instead of managed storage
       if (this.isFirefox) {
-        logger.log("Check: Firefox detected, policies loaded via 3rdparty extension settings (handled by ConfigManager)");
+        logger.log("Bailey Guard: Firefox detected, policies loaded via 3rdparty extension settings (handled by ConfigManager)");
         // Firefox policies are loaded through the extension's configuration system
         // which reads from browser.storage.managed automatically
         return {};
@@ -74,7 +75,7 @@ export class PolicyManager {
       const managedPolicies = await safe(storage.managed.get(["policies"]));
       return managedPolicies?.policies || {};
     } catch (error) {
-      logger.log("Check: No enterprise policies available");
+      logger.log("Bailey Guard: No enterprise policies available");
       return {};
     }
   }
@@ -217,7 +218,7 @@ export class PolicyManager {
           return result;
       }
     } catch (error) {
-      logger.error("Check: Policy check failed:", error);
+      logger.error("Bailey Guard: Policy check failed:", error);
       result.allowed = false;
       result.reason = "Policy check failed";
       return result;
@@ -487,9 +488,9 @@ export class PolicyManager {
       await safe(storage.local.set({ policies: updatedPolicies }));
       this.policies = updatedPolicies;
 
-      logger.log("Check: Policies updated");
+      logger.log("Bailey Guard: Policies updated");
     } catch (error) {
-      logger.error("Check: Failed to update policies:", error);
+      logger.error("Bailey Guard: Failed to update policies:", error);
       throw error;
     }
   }
@@ -543,7 +544,7 @@ export class PolicyManager {
       const auditLog = await safe(storage.local.get(["auditLog"]));
       return auditLog?.auditLog || [];
     } catch (error) {
-      logger.error("Check: Failed to get audit log:", error);
+      logger.error("Bailey Guard: Failed to get audit log:", error);
       return [];
     }
   }
@@ -573,12 +574,12 @@ export class PolicyManager {
 
       await safe(storage.local.set({ auditLog: logs }));
     } catch (error) {
-      logger.error("Check: Failed to log audit event:", error);
+      logger.error("Bailey Guard: Failed to log audit event:", error);
     }
   }
 
   loadDefaultPolicies() {
     this.policies = this.getDefaultPolicies();
-    logger.log("Check: Using default policies");
+    logger.log("Bailey Guard: Using default policies");
   }
 }

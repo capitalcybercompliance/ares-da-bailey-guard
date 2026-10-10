@@ -1,3 +1,4 @@
+/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Check - Popup Styles
  * Modern, enterprise-grade styling for the extension popup interface
@@ -6,21 +7,21 @@
 /* Theme Variables */
 :root {
   /* Primary Theme Colors */
-  --theme-primary: #F77F00;
-  --theme-primary-hover: #E56F00;
-  --theme-primary-light: rgba(247, 127, 0, 0.1);
-  --theme-primary-dark: #D96800;
+  --theme-primary: #165DFB;
+  --theme-primary-hover: #0F47D4;
+  --theme-primary-light: rgba(22, 93, 251, 0.1);
+  --theme-primary-dark: #0F47D4;
 
   /* Secondary Theme Colors */
-  --theme-secondary: #005C63;
-  --theme-secondary-hover: #007580;
-  --theme-secondary-light: rgba(0, 92, 99, 0.1);
-  --theme-secondary-dark: #004851;
+  --theme-secondary: #15803D;
+  --theme-secondary-hover: #166534;
+  --theme-secondary-light: rgba(21, 128, 61, 0.1);
+  --theme-secondary-dark: #14532D;
 
   /* Supporting Colors */
-  --theme-accent: #005C63;
-  --theme-success: #005C63;
-  --theme-warning: #F77F00;
+  --theme-accent: #15803D;
+  --theme-success: #15803D;
+  --theme-warning: #165DFB;
   --theme-error: #DC2626;
 }
 
@@ -39,7 +40,7 @@
 
   /* Border Colors */
   --theme-border: #E5E7EB;
-  --theme-border-hover: rgba(247, 127, 0, 0.3);
+  --theme-border-hover: rgba(22, 93, 251, 0.3);
 
   /* Shadows */
   --theme-shadow: rgba(0, 0, 0, 0.1);
@@ -60,7 +61,7 @@
 
   /* Border Colors */
   --theme-border: #4B5563;
-  --theme-border-hover: rgba(247, 127, 0, 0.3);
+  --theme-border-hover: rgba(22, 93, 251, 0.3);
 
   /* Shadows */
   --theme-shadow: rgba(0, 0, 0, 0.3);
@@ -82,7 +83,7 @@
 
     /* Border Colors */
     --theme-border: #4B5563;
-    --theme-border-hover: rgba(247, 127, 0, 0.3);
+    --theme-border-hover: rgba(22, 93, 251, 0.3);
 
     /* Shadows */
     --theme-shadow: rgba(0, 0, 0, 0.3);
@@ -104,7 +105,7 @@
 
   /* Border Colors */
   --theme-border: #E5E7EB;
-  --theme-border-hover: rgba(247, 127, 0, 0.3);
+  --theme-border-hover: rgba(22, 93, 251, 0.3);
 
   /* Shadows */
   --theme-shadow: rgba(0, 0, 0, 0.1);
@@ -175,9 +176,18 @@ body {
 }
 
 .logo {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  padding: 2px;
+  box-shadow: 0 0 0 2px var(--theme-primary);
+}
+
+.extension-tagline {
+  font-size: 12px;
+  color: var(--theme-text-secondary);
+  margin-top: 2px;
 }
 
 .brand-info {
@@ -211,7 +221,7 @@ body {
 }
 
 .header-settings-btn:hover {
-  background: rgba(247, 127, 0, 0.2);
+  background: rgba(22, 93, 251, 0.2);
   border-color: var(--theme-primary);
   transform: translateY(-1px);
 }
@@ -383,13 +393,13 @@ body {
   font-size: 15px;
   min-height: 44px;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(247, 127, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(22, 93, 251, 0.2);
 }
 
 .action-btn.primary:hover {
   background: var(--theme-primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(247, 127, 0, 0.3);
+  box-shadow: 0 6px 16px rgba(22, 93, 251, 0.3);
 }
 
 .action-btn.primary.disabled {
@@ -965,7 +975,7 @@ body {
 
 .test-stat.success {
   border-color: var(--theme-success);
-  background: rgba(0, 92, 99, 0.1);
+  background: rgba(21, 128, 61, 0.1);
 }
 
 .test-stat.error {
@@ -1027,7 +1037,7 @@ body {
 
 .test-result.success {
   border-color: var(--theme-success);
-  background: rgba(0, 92, 99, 0.05);
+  background: rgba(21, 128, 61, 0.05);
 }
 
 .test-result.error {
@@ -1130,7 +1140,7 @@ body {
 
 .validation-stat.success {
   border-color: var(--theme-success);
-  background: rgba(0, 92, 99, 0.1);
+  background: rgba(21, 128, 61, 0.1);
 }
 
 .validation-stat.error {

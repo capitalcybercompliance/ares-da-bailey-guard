@@ -165,7 +165,7 @@
           "description": "Primary theme color (hex code)",
           "type": "string",
           "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
-          "default": "#F77F00"
+          "default": "#165DFB"
         },
         "logoUrl": {
           "title": "Logo URL",

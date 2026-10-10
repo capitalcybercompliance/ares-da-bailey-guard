@@ -334,3 +334,4 @@ storybook-static/
 
 # End of https://www.gitignore.io/api/node
 .github/copilot-instructions.md
+dist/

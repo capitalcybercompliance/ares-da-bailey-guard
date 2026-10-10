@@ -1,0 +1,23 @@
+Bailey Guard by CGA
+Copyright 2026 Cyber Grants Alliance
+
+Bailey Guard by CGA is based on Check by CyberDrain (AGPL 3.0).
+Original source: https://github.com/CyberDrain/Check
+Copyright CyberDrain and the Check contributors.
+
+Cyber Grants Alliance modified the original work starting 2026-10-09:
+new name, mascot, icons, colors and wording; removed the identity and
+identity.email permissions; turned the remote rogue OAuth app list off by
+default; bundled the Material Icons font locally; removed the upstream
+enterprise deployment files, store scripts and documentation. Each modified
+source file carries a notice at the top. The full history of changes is in
+this repository's git log.
+
+The detection rules file (rules/detection-rules.json) is CyberDrain's
+upstream file, unchanged, and is refreshed at run time from the upstream URL.
+
+Material Icons font: Copyright Google, Apache License 2.0
+(fonts/LICENSE-MaterialIcons.txt).
+
+This program is free software under the GNU Affero General Public License
+version 3. See LICENSE.

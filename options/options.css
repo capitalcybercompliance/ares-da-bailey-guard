@@ -1,3 +1,4 @@
+/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Check - Options Page Styles
  * Comprehensive styling for the extension settings page
@@ -11,15 +12,15 @@
 }
 
 :root {
-  --primary-color: #F77F00;
-  --primary-hover: #E56F00;
-  --primary-dark: #003049;
-  --secondary-teal-dark: #005C63;
-  --secondary-teal-medium: #3E5C66;
-  --secondary-light-green: #EBF0DF;
-  --success-color: #005C63;
-  --warning-color: #F77F00;
-  --error-color: #003049;
+  --primary-color: #165DFB;
+  --primary-hover: #0F47D4;
+  --primary-dark: #16163F;
+  --secondary-teal-dark: #15803D;
+  --secondary-teal-medium: #0F47D4;
+  --secondary-light-green: #F0F4FF;
+  --success-color: #15803D;
+  --warning-color: #165DFB;
+  --error-color: #DC2626;
   --radius: 8px;
   --radius-lg: 12px;
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -357,7 +358,7 @@ body {
 .playground-textarea:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(247, 127, 0, 0.25);
+  box-shadow: 0 0 0 2px rgba(22, 93, 251, 0.25);
 }
 
 /* Stacked label layout for multi-line playground inputs */
@@ -2564,7 +2565,7 @@ body {
   flex-shrink: 0;
 }
 
-.cyberdrain-info {
+.about-info {
   display: flex;
   align-items: flex-start;
   gap: 20px;
@@ -2580,29 +2581,29 @@ body {
   border-radius: var(--radius);
 }
 
-/* CyberDrain Shield Logo Light/Dark Mode Switching */
-.cyberdrain-shield-light {
+/* Shield logo light and dark mode switching */
+.legacy-shield-light {
   display: block;
 }
 
-.cyberdrain-shield-dark {
+.legacy-shield-dark {
   display: none;
 }
 
-:root.dark-theme .cyberdrain-shield-light {
+:root.dark-theme .legacy-shield-light {
   display: none;
 }
 
-:root.dark-theme .cyberdrain-shield-dark {
+:root.dark-theme .legacy-shield-dark {
   display: block;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not(.light-theme) .cyberdrain-shield-light {
+  :root:not(.light-theme) .legacy-shield-light {
     display: none;
   }
 
-  :root:not(.light-theme) .cyberdrain-shield-dark {
+  :root:not(.light-theme) .legacy-shield-dark {
     display: block;
   }
 }
@@ -2791,7 +2792,7 @@ body {
     margin: 0;
   }
 
-  .cyberdrain-info {
+  .about-info {
     flex-direction: column;
     text-align: center;
   }
@@ -2874,4 +2875,19 @@ body {
 
 :root.dark-theme .policy-lock {
   color: #D4AF37;
+}
+
+/* Bailey Guard by CGA additions */
+.bailey-about-img {
+  width: 96px !important;
+  height: auto !important;
+  max-height: 140px;
+  object-fit: contain;
+}
+.attribution-line {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.attribution-line a {
+  color: var(--primary-color);
 }

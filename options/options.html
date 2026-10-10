@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<!-- Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check - Settings</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Bailey Guard by CGA - Settings</title>
+    <link rel="stylesheet" href="../fonts/material-icons.css">
     <link rel="stylesheet" href="options.css">
 </head>
 <body>
@@ -12,9 +13,9 @@
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <img src="../images/icon48.png" alt="Check Logo" class="sidebar-logo" id="sidebarLogo">
+                <img src="../images/icon48.png" alt="Bailey Guard logo" class="sidebar-logo" id="sidebarLogo">
                             <div class="sidebar-title">
-                <h2 id="sidebarTitle">Check</h2>
+                <h2 id="sidebarTitle">Bailey Guard</h2>
             </div>
             </div>
 
@@ -51,8 +52,8 @@
                         <span class="material-icons">menu</span>
                     </button>
                     <div class="header-mobile-logo">
-                        <img src="../images/icon48.png" alt="Check Logo" class="mobile-logo" id="mobileLogo">
-                        <span class="mobile-logo-text" id="mobileLogoText">Check</span>
+                        <img src="../images/icon48.png" alt="Bailey Guard logo" class="mobile-logo" id="mobileLogo">
+                        <span class="mobile-logo-text" id="mobileLogoText">Bailey Guard</span>
                     </div>
                 </div>
                 <div class="header-title-section">
@@ -230,7 +231,7 @@
                         <div class="setting-item">
                             <label class="setting-label">
                                 Config URL
-                                <input type="url" id="customRulesUrl" class="setting-input" placeholder="https://raw.githubusercontent.com/CyberDrain/Check/refs/heads/main/rules/detection-rules.json">
+                                <input type="url" id="customRulesUrl" class="setting-input" placeholder="https://example.org/detection-rules.json">
                             </label>
                             <p class="setting-description">URL to fetch detection configuration from (leave empty for default)</p>
                         </div>
@@ -467,8 +468,8 @@
                     <h3>Preview</h3>
                     <div class="preview-popup" id="brandingPreview">
                         <div class="preview-header">
-                            <img src="../images/icon32.png" alt="Check Logo" class="preview-logo" id="previewLogo">
-                            <span class="preview-title" id="previewTitle">Check</span>
+                            <img src="../images/icon32.png" alt="Bailey Guard logo" class="preview-logo" id="previewLogo">
+                            <span class="preview-title" id="previewTitle">Bailey Guard by CGA</span>
                         </div>
                         <div class="preview-content">
                             <p>This is how your branding will appear in the extension popup.</p>
@@ -484,29 +485,25 @@
                     <div class="setting-group">
                         <div class="about-split-container">
                             <div class="about-left-panel">
-                                <h3>About Check</h3>
-                                <div class="cyberdrain-info">
+                                <h3>About Bailey Guard by CGA</h3>
+                                <div class="about-info">
                                     <div class="company-logo">
-                                        <img src="../images/icon48.png" alt="Check Logo" class="company-logo-img">
+                                        <img src="../images/bailey-mascot.png" alt="Bailey the golden doodle guard dog" class="company-logo-img bailey-about-img">
                                     </div>
                                     <div class="product-description">
-                                        <p><strong>Check</strong> is an advanced browser extension that provides real-time protection against Microsoft 365 phishing attacks. Designed for enterprises and managed service providers, Check uses sophisticated detection algorithms to identify and block malicious login pages before credentials can be compromised.</p>
-                                        <p>The extension integrates seamlessly with existing security workflows, offering centralized management, comprehensive logging, and CIPP integration for MSPs managing multiple Microsoft 365 tenants.</p>
+                                        <p><strong>Bailey Guard by CGA</strong> warns you before you type your Microsoft 365 password into a fake sign in page. Bailey looks at every sign in page you open. If a page copies the Microsoft sign in screen but is not really Microsoft, Bailey blocks it and tells you why.</p>
+                                        <p>Detection runs inside your browser. Bailey Guard does not collect your browsing history, your passwords, or anything you type. The only thing it downloads is the list of detection rules, so it keeps up with new scams.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="about-divider"></div>
 
                             <div class="about-right-panel">
-                                <h3>Created by CyberDrain</h3>
-                                <div class="cyberdrain-info">
-                                    <div class="company-logo">
-                                        <img src="../images/cyberdrain-light-square.svg" alt="CyberDrain" class="company-logo-img cyberdrain-shield-light">
-                                        <img src="../images/cyberdrain-dark-square.svg" alt="CyberDrain" class="company-logo-img cyberdrain-shield-dark">
-                                    </div>
-                                    <div class="company-description">
-                                        <p><strong>CyberDrain</strong> is a leading provider of Microsoft 365 automation and security solutions for Managed Service Providers (MSPs) and enterprises worldwide.</p>
-                                        <p>With a focus on innovation, CyberDrain delivers enterprise-grade tools that streamline Microsoft 365 management and enhance security posture through automation.</p>
+                                <h3>From Cyber Grants Alliance</h3>
+                                <div class="about-info">
+                                    <div class="product-description">
+                                        <p><strong>Cyber Grants Alliance</strong> is a nonprofit that helps small businesses and community organizations protect themselves from cyber attacks. Bailey Guard is a no cost tool we offer to anyone who wants it.</p>
+                                        <p class="attribution-line">Bailey Guard by CGA is based on Check by CyberDrain (AGPL 3.0). Source code for the original: <a href="https://github.com/CyberDrain/Check" target="_blank" rel="noopener">github.com/CyberDrain/Check</a>. Bailey Guard is also licensed under the GNU Affero General Public License 3.0.</p>
                                     </div>
                                 </div>
                             </div>
@@ -515,46 +512,35 @@
                         <div class="about-section-spacer"></div>
 
                         <div class="links-grid">
-						            <a href="https://microsoftedge.microsoft.com/addons/detail/check-by-cyberdrain/knepjpocdagponkonnbggpcnhnaikajg" target="_blank" class="link-card">
-                                        <div class="link-icon">
-                                            <span class="material-icons">store</span>
-                                        </div>
-                                        <div class="link-content">
-                                            <h4>Edge Web Store</h4>
-                                            <p>Download and rate this extension</p>
-                                        </div>
-                                        <span class="material-icons link-arrow">open_in_new</span>
-                                    </a>
-									
-                                    <a href="https://chromewebstore.google.com/detail/check-by-cyberdrain/benimdeioplgkhanklclahllklceahbe" target="_blank" class="link-card">
-                                        <div class="link-icon">
-                                            <span class="material-icons">store</span>
-                                        </div>
-                                        <div class="link-content">
-                                            <h4>Chrome Web Store</h4>
-                                            <p>Download and rate this extension</p>
-                                        </div>
-                                        <span class="material-icons link-arrow">open_in_new</span>
-                                    </a>
-
-                                    <a href="https://github.com/CyberDrain/Check" target="_blank" class="link-card">
-                                        <div class="link-icon">
-                                            <span class="material-icons">code</span>
-                                        </div>
-                                        <div class="link-content">
-                                            <h4>GitHub Repository</h4>
-                                            <p>View source code</p>
-                                        </div>
-                                        <span class="material-icons link-arrow">open_in_new</span>
-                                    </a>
-
-                                    <a href="https://cyberdrain.com/" target="_blank" class="link-card">
+                                    <a href="https://www.cybergrantsalliance.org/" target="_blank" rel="noopener" class="link-card">
                                         <div class="link-icon">
                                             <span class="material-icons">language</span>
                                         </div>
                                         <div class="link-content">
-                                            <h4>CyberDrain Website</h4>
-                                            <p>Learn more about our solutions</p>
+                                            <h4>Cyber Grants Alliance</h4>
+                                            <p>Support and more about our work</p>
+                                        </div>
+                                        <span class="material-icons link-arrow">open_in_new</span>
+                                    </a>
+
+                                    <a href="https://github.com/capitalcybercompliance/ares-da-bailey-guard" target="_blank" rel="noopener" class="link-card">
+                                        <div class="link-icon">
+                                            <span class="material-icons">code</span>
+                                        </div>
+                                        <div class="link-content">
+                                            <h4>Source Code</h4>
+                                            <p>Bailey Guard source, AGPL 3.0</p>
+                                        </div>
+                                        <span class="material-icons link-arrow">open_in_new</span>
+                                    </a>
+
+                                    <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener" class="link-card">
+                                        <div class="link-icon">
+                                            <span class="material-icons">gavel</span>
+                                        </div>
+                                        <div class="link-content">
+                                            <h4>License</h4>
+                                            <p>GNU Affero General Public License 3.0</p>
                                         </div>
                                         <span class="material-icons link-arrow">open_in_new</span>
                                     </a>

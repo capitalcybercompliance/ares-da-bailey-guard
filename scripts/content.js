@@ -1,3 +1,4 @@
+/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Check - Final Rule-Driven Content Script
  * 100% rule-driven architecture - NO hardcoded detections
@@ -4495,7 +4496,7 @@ if (window.checkExtensionLoaded) {
             };
 
             if (protectionEnabled) {
-              logger.error(
+              logger.warn(
                 "🛡️ PROTECTION ACTIVE: Blocking page due to critical phishing indicators"
               );
               await showBlockingOverlay(reason, {
@@ -4603,7 +4604,7 @@ if (window.checkExtensionLoaded) {
               );
 
               if (protectionEnabled) {
-                logger.error(
+                logger.warn(
                   "🛡️ PROTECTION ACTIVE: Blocking page due to escalated warning threats"
                 );
                 await showBlockingOverlay(reason, {
@@ -4888,7 +4889,7 @@ if (window.checkExtensionLoaded) {
       // Step 4: Check blocking rules first (immediate blocking conditions)
       const blockingResult = runBlockingRules();
       if (blockingResult.shouldBlock) {
-        logger.error(
+        logger.warn(
           `🛡️ ANALYSIS: Page should be BLOCKED - ${blockingResult.reason}`
         );
 
@@ -4910,7 +4911,7 @@ if (window.checkExtensionLoaded) {
         };
 
         if (protectionEnabled) {
-          logger.error(
+          logger.warn(
             "🛡️ PROTECTION ACTIVE: Blocking page - redirecting to blocking page"
           );
 
@@ -5035,7 +5036,7 @@ if (window.checkExtensionLoaded) {
         };
 
         if (protectionEnabled) {
-          logger.error(
+          logger.warn(
             "🛡️ PROTECTION ACTIVE: Blocking due to critical detection rule"
           );
 
@@ -5185,7 +5186,7 @@ if (window.checkExtensionLoaded) {
         }
 
         if (protectionEnabled) {
-          logger.error(
+          logger.warn(
             "🛡️ PROTECTION ACTIVE: Blocking page due to critical phishing indicators"
           );
 
@@ -5292,7 +5293,7 @@ if (window.checkExtensionLoaded) {
           };
 
           if (protectionEnabled) {
-            logger.error(
+            logger.warn(
               "🛡️ PROTECTION ACTIVE: Blocking due to very low detection score"
             );
             await showBlockingOverlay(reason, {
@@ -5383,7 +5384,7 @@ if (window.checkExtensionLoaded) {
         if (severity === "high") {
           logger.warn(`🚨 ANALYSIS: HIGH THREAT detected - ${reason}`);
           if (protectionEnabled) {
-            logger.error(
+            logger.warn(
               "🛡️ PROTECTION ACTIVE: Blocking page due to high threat"
             );
 
@@ -6027,17 +6028,16 @@ if (window.checkExtensionLoaded) {
         const title = document.createElement("h1");
         title.style.color = "#d32f2f";
         title.style.margin = "0 0 16px 0";
-        title.textContent = "Phishing Site Blocked";
+        title.textContent = "Woof. This is not a real Microsoft sign in page.";
 
         const paragraphStrong = document.createElement("p");
         const strong = document.createElement("strong");
-        strong.textContent =
-          "Microsoft 365 login page detected on suspicious domain.";
+        strong.textContent = "Do not enter your password.";
         paragraphStrong.appendChild(strong);
 
         const paragraphDetails = document.createElement("p");
         paragraphDetails.textContent =
-          "This site may be attempting to steal your credentials and has been blocked for your protection.";
+          "This site copies the Microsoft 365 sign in page to steal passwords. Bailey blocked it to keep your account safe.";
 
         const reasonLine = document.createElement("div");
         reasonLine.style.color = "#777";
@@ -6048,7 +6048,7 @@ if (window.checkExtensionLoaded) {
         const blockedByLine = document.createElement("div");
         blockedByLine.style.color = "#777";
         blockedByLine.style.fontSize = "14px";
-        blockedByLine.textContent = "Blocked by: Check";
+        blockedByLine.textContent = "Blocked by: Bailey Guard by CGA";
 
         const noOverrideLine = document.createElement("div");
         noOverrideLine.style.color = "#777";
@@ -6221,7 +6221,7 @@ if (window.checkExtensionLoaded) {
         if (!bannerEl) return;
         try {
           const companyName =
-            branding.companyName || branding.productName || "CyberDrain";
+            branding.productName || branding.companyName || "Bailey Guard by CGA";
           const supportEmail = branding.supportEmail || "";
           let logoUrl = branding.logoUrl || "";
           const packagedFallback = chrome.runtime.getURL("images/icon48.png");
@@ -6338,13 +6338,13 @@ if (window.checkExtensionLoaded) {
         : "";
 
       // Determine banner type and styling based on analysis data
-      let bannerTitle = "Suspicious Microsoft 365 Login Page";
+      let bannerTitle = "Woof. This looks like a fake Microsoft 365 sign in page. Be careful.";
       let bannerIcon = "⚠️";
       let bannerColor = "linear-gradient(135deg, #ff9800, #f57c00)"; // Orange for warnings
 
       // Check for scanning state
       if (analysisData?.severity === "scanning") {
-        bannerTitle = "Security Scan in Progress";
+        bannerTitle = "Bailey is looking at this page";
         bannerIcon = "🔍";
         bannerColor = "linear-gradient(135deg, #2196f3, #1976d2)"; // Blue for scanning
       }
@@ -6354,7 +6354,7 @@ if (window.checkExtensionLoaded) {
         reason.toLowerCase().includes("domain squatting") ||
         reason.toLowerCase().includes("typosquat")
       ) {
-        bannerTitle = "⚠️ Suspicious Domain Detected";
+        bannerTitle = "Woof. This web address only looks like the real one.";
         bannerIcon = "🔗";
         bannerColor = "linear-gradient(135deg, #ff5722, #d84315)"; // Same orange-red as high risk warnings
         // Override reason text for domain squatting to be more user-friendly
@@ -6368,15 +6368,15 @@ if (window.checkExtensionLoaded) {
         reason.toLowerCase().includes("rogue oauth") ||
         reason.toLowerCase().includes("rogue app")
       ) {
-        bannerTitle = "🚨 CRITICAL SECURITY THREAT";
+        bannerTitle = "Woof. Stop. This app is known to be dangerous. Do not grant it access.";
         bannerIcon = "🛡️";
         bannerColor = "linear-gradient(135deg, #f44336, #d32f2f)"; // Red for critical threats
       } else if (analysisData?.severity === "critical") {
-        bannerTitle = "Critical Security Warning";
+        bannerTitle = "Woof. Stop. Do not enter your password on this page.";
         bannerIcon = "🚨";
         bannerColor = "linear-gradient(135deg, #f44336, #d32f2f)"; // Red for critical
       } else if (analysisData?.severity === "high") {
-        bannerTitle = "High Risk Security Warning";
+        bannerTitle = "Woof. This page is high risk. Do not enter your password.";
         bannerIcon = "⚠️";
         bannerColor = "linear-gradient(135deg, #ff5722, #d84315)"; // Orange-red for high risk
       }
@@ -6609,10 +6609,10 @@ if (window.checkExtensionLoaded) {
 
         badge.innerHTML = `
         <div style="display: flex; align-items: center; justify-content: center; gap: 16px; position: relative; padding-right: 48px;">
-          <span style="font-size: 24px;">✅</span>
+          <img src="${chrome.runtime.getURL("images/icon48.png")}" alt="" style="width: 36px; height: 36px; border-radius: 50%; background: #fff; padding: 2px;">
           <div>
-            <strong>Verified Microsoft Domain</strong><br>
-            <small>This is an authentic Microsoft login page</small>
+            <strong>Real Microsoft sign in page</strong><br>
+            <small>Bailey checked it. This is the genuine Microsoft login site.</small>
           </div>
           <button onclick="if(window.validBadgeTimeoutId){clearTimeout(window.validBadgeTimeoutId);window.validBadgeTimeoutId=null;} this.parentElement.parentElement.remove(); document.body.style.marginTop = '0';" title="Dismiss" style="
             position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
@@ -6649,8 +6649,8 @@ if (window.checkExtensionLoaded) {
 
         badge.innerHTML = `
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 16px;">✅</span>
-          <span>Verified Microsoft Domain</span>
+          <img src="${chrome.runtime.getURL("images/icon32.png")}" alt="" style="width: 22px; height: 22px; border-radius: 50%; background: #fff; padding: 1px;">
+          <span>Real Microsoft sign in page</span>
         </div>
       `;
 
@@ -6716,8 +6716,8 @@ if (window.checkExtensionLoaded) {
 
       warning.innerHTML = `
       <div>
-        <strong>⚠️ Security Warning</strong><br>
-        <small>Microsoft login elements detected on non-Microsoft domain. Protection system unavailable.</small>
+        <strong>⚠️ Woof. Be careful on this page.</strong><br>
+        <small>It shows Microsoft sign in elements but is not a Microsoft site. Do not enter your password.</small>
       </div>
     `;
 
@@ -7169,7 +7169,7 @@ if (window.checkExtensionLoaded) {
    */
   function initializeProtection() {
     try {
-      logger.log("Initializing Check");
+      logger.log("Initializing Bailey Guard");
       logger.log(`Initial document.readyState: ${document.readyState}`);
 
       // Console capture is now setup only when developer mode is enabled (see loadDeveloperConsoleLoggingSetting)

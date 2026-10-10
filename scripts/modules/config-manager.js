@@ -1,3 +1,4 @@
+/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Configuration Manager for Check
  * Handles enterprise configuration, branding, and settings management
@@ -45,10 +46,10 @@ export class ConfigManager {
         this.brandingConfig
       );
 
-      logger.log("Check: Configuration loaded successfully");
+      logger.log("Bailey Guard: Configuration loaded successfully");
       return this.config;
     } catch (error) {
-      logger.error("Check: Failed to load configuration:", error);
+      logger.error("Bailey Guard: Failed to load configuration:", error);
       throw error;
     }
   }
@@ -57,7 +58,7 @@ export class ConfigManager {
     // Migrate legacy detectionRules.customRulesUrl to top-level customRulesUrl
     if (config.detectionRules?.customRulesUrl && !config.customRulesUrl) {
       config.customRulesUrl = config.detectionRules.customRulesUrl;
-      logger.log("Check: Migrated legacy customRulesUrl to top-level");
+      logger.log("Bailey Guard: Migrated legacy customRulesUrl to top-level");
     }
 
     // Migrate legacy detectionRules.updateInterval to top-level updateInterval
@@ -65,7 +66,7 @@ export class ConfigManager {
       // Convert milliseconds to hours if needed
       const interval = config.detectionRules.updateInterval;
       config.updateInterval = interval > 1000 ? Math.round(interval / 3600000) : interval;
-      logger.log("Check: Migrated legacy updateInterval to top-level");
+      logger.log("Bailey Guard: Migrated legacy updateInterval to top-level");
     }
 
     return config;
@@ -97,7 +98,7 @@ export class ConfigManager {
       if (isDevelopment && simulateEnterpriseMode) {
         // Return mock enterprise configuration for development/testing
         logger.log(
-          "Check: Using mock enterprise configuration (simulate mode enabled)"
+          "Bailey Guard: Using mock enterprise configuration (simulate mode enabled)"
         );
         return {
           // Extension configuration
@@ -128,14 +129,13 @@ export class ConfigManager {
 
           // Custom branding (matches managed_schema.json structure)
           customBranding: {
-            companyName: "CyberDrain",
-            productName: "Check Enterprise",
+            companyName: "Cyber Grants Alliance",
+            productName: "Bailey Guard by CGA",
             supportUrl: "",
             privacyPolicyUrl: "",
             aboutUrl: "",
-            primaryColor: "#F77F00",
-            logoUrl:
-              "https://cyberdrain.com/images/favicon_hu_20e77b0e20e363e.png",
+            primaryColor: "#165DFB",
+            logoUrl: "images/icon48.png",
           },
         };
       }
@@ -144,13 +144,13 @@ export class ConfigManager {
       const managedConfig = await safe(storage.managed.get(null));
 
       if (managedConfig && Object.keys(managedConfig).length > 0) {
-        logger.log("Check: Enterprise configuration found");
+        logger.log("Bailey Guard: Enterprise configuration found");
         return managedConfig;
       }
 
       return {};
     } catch (error) {
-      logger.log("Check: No enterprise configuration available");
+      logger.log("Bailey Guard: No enterprise configuration available");
       return {};
     }
   }
@@ -185,7 +185,7 @@ export class ConfigManager {
       );
 
       if (userBranding && userBranding.brandingConfig) {
-        logger.log("Check: Using user-configured branding from storage");
+        logger.log("Bailey Guard: Using user-configured branding from storage");
         return userBranding.brandingConfig;
       }
 
@@ -202,13 +202,13 @@ export class ConfigManager {
 
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const brandingConfig = await response.json();
-        logger.log("Check: Using branding from config file");
+        logger.log("Bailey Guard: Using branding from config file");
         return brandingConfig;
       } finally {
         clearTimeout(timeoutId);
       }
     } catch (error) {
-      logger.log("Check: Using default branding configuration");
+      logger.log("Bailey Guard: Using default branding configuration");
       return this.getDefaultBrandingConfig();
     }
   }
@@ -254,7 +254,7 @@ export class ConfigManager {
     // Auto-enable debug logging when developer console logging is enabled
     if (merged.enableDeveloperConsoleLogging === true && merged.enableDebugLogging !== true) {
       merged.enableDebugLogging = true;
-      logger.log("Check: Auto-enabled debug logging (developer console logging is enabled)");
+      logger.log("Bailey Guard: Auto-enabled debug logging (developer console logging is enabled)");
     }
 
     // Ensure enterprise policies cannot be overridden
@@ -350,29 +350,29 @@ export class ConfigManager {
   getDefaultBrandingConfig() {
     return {
       // Company branding
-      companyName: "Check",
-      productName: "Check",
+      companyName: "Cyber Grants Alliance",
+      productName: "Bailey Guard by CGA",
       version: "1.0.0",
 
       // Visual branding
-      primaryColor: "#F77F00",
-      secondaryColor: "#64748b",
-      logoUrl: "images/logo.png",
-      faviconUrl: "images/favicon.ico",
+      primaryColor: "#165DFB",
+      secondaryColor: "#16163F",
+      logoUrl: "images/icon48.png",
+      faviconUrl: "images/icon16.png",
 
       // Contact information
       supportEmail: "",
-      supportUrl: "",
-      privacyPolicyUrl: "",
-      aboutUrl: "",
+      supportUrl: "https://www.cybergrantsalliance.org/",
+      privacyPolicyUrl: "https://www.cybergrantsalliance.org/",
+      aboutUrl: "https://www.cybergrantsalliance.org/",
       termsOfServiceUrl: "",
 
       // Customizable text
       welcomeMessage:
-        "Welcome to Check - Your Enterprise Web Security Solution",
-      blockedPageTitle: "Access Blocked by Check",
+        "Hi, I am Bailey. I watch for fake Microsoft 365 sign in pages.",
+      blockedPageTitle: "Woof. Bailey stopped a fake sign in page.",
       blockedPageMessage:
-        "This page has been blocked by your organization's security policy.",
+        "This is not a real Microsoft sign in page. Do not enter your password.",
 
       // Feature customization
       showCompanyBranding: true,
@@ -399,7 +399,7 @@ export class ConfigManager {
       await safe(storage.local.set({ config: defaultConfig }));
       this.config = defaultConfig;
     } catch (error) {
-      logger.error("Check: Failed to set default config:", error);
+      logger.error("Bailey Guard: Failed to set default config:", error);
       this.config = this.getDefaultConfig();
     }
   }
@@ -469,7 +469,7 @@ export class ConfigManager {
 
       return this.config;
     } catch (error) {
-      logger.error("Check: Failed to update configuration:", error);
+      logger.error("Bailey Guard: Failed to update configuration:", error);
       throw error;
     }
   }
@@ -507,7 +507,7 @@ export class ConfigManager {
         ...finalBranding,
         ...this.enterpriseConfig.customBranding,
       };
-      logger.log("Check: Applied enterprise custom branding");
+      logger.log("Bailey Guard: Applied enterprise custom branding");
     }
 
     // Include genericWebhook from config if available
@@ -543,7 +543,7 @@ export class ConfigManager {
       };
 
       logger.log(
-        `Check: Migrating configuration from version ${previousVersion}`
+        `Bailey Guard: Migrating configuration from version ${previousVersion}`
       );
 
       const currentConfig = await safe(storage.local.get(["config"]));
@@ -555,9 +555,9 @@ export class ConfigManager {
       //   // Migration logic for 1.1.0
       // }
 
-      logger.log("Check: Configuration migration completed");
+      logger.log("Bailey Guard: Configuration migration completed");
     } catch (error) {
-      logger.error("Check: Configuration migration failed:", error);
+      logger.error("Bailey Guard: Configuration migration failed:", error);
     }
   }
 
@@ -614,10 +614,10 @@ export class ConfigManager {
         this.brandingConfig = importData.branding;
       }
 
-      logger.log("Check: Configuration imported successfully");
+      logger.log("Bailey Guard: Configuration imported successfully");
       return true;
     } catch (error) {
-      logger.error("Check: Failed to import configuration:", error);
+      logger.error("Bailey Guard: Failed to import configuration:", error);
       throw error;
     }
   }

@@ -1,3 +1,4 @@
+/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Check - Options Page JavaScript
  * Comprehensive settings management and configuration interface
@@ -492,23 +493,23 @@ class CheckOptions {
       // Fallback to default branding if background script fails
       console.warn("Options: Using fallback branding configuration");
       this.brandingConfig = {
-        companyName: "CyberDrain",
-        productName: "Check",
-        supportUrl: "",
-        privacyPolicyUrl: "",
-        aboutUrl: "",
-        primaryColor: "#F77F00",
+        companyName: "Cyber Grants Alliance",
+        productName: "Bailey Guard by CGA",
+        supportUrl: "https://www.cybergrantsalliance.org/",
+        privacyPolicyUrl: "https://www.cybergrantsalliance.org/",
+        aboutUrl: "https://www.cybergrantsalliance.org/",
+        primaryColor: "#165DFB",
         logoUrl: "images/icon48.png",
       };
     } catch (error) {
       console.error("Error loading branding configuration:", error);
       this.brandingConfig = {
-        companyName: "CyberDrain",
-        productName: "Check",
-        supportUrl: "",
-        privacyPolicyUrl: "",
-        aboutUrl: "",
-        primaryColor: "#F77F00",
+        companyName: "Cyber Grants Alliance",
+        productName: "Bailey Guard by CGA",
+        supportUrl: "https://www.cybergrantsalliance.org/",
+        privacyPolicyUrl: "https://www.cybergrantsalliance.org/",
+        aboutUrl: "https://www.cybergrantsalliance.org/",
+        primaryColor: "#165DFB",
         logoUrl: "images/icon48.png",
       };
     }
@@ -866,12 +867,12 @@ class CheckOptions {
   applyBranding() {
     // Update sidebar branding
     document.getElementById("sidebarTitle").textContent =
-      this.brandingConfig?.productName || "Check";
+      this.brandingConfig?.productName || "Bailey Guard";
 
     // Update mobile logo text
     const mobileLogoText = document.getElementById("mobileLogoText");
     if (mobileLogoText) {
-      mobileLogoText.textContent = this.brandingConfig?.productName || "Check";
+      mobileLogoText.textContent = this.brandingConfig?.productName || "Bailey Guard";
     }
 
     // Function to set logo src with fallback
@@ -1045,7 +1046,7 @@ class CheckOptions {
       this.brandingConfig?.privacyPolicyUrl || "";
     this.elements.aboutUrl.value = this.brandingConfig?.aboutUrl || "";
     this.elements.primaryColor.value =
-    this.brandingConfig?.primaryColor || "#F77F00";
+    this.brandingConfig?.primaryColor || "#165DFB";
     this.elements.logoUrl.value = this.brandingConfig?.logoUrl || "";
   }
 
@@ -1083,9 +1084,9 @@ class CheckOptions {
         subtitle: "Customize the extension's appearance and branding",
       },
       about: {
-        title: "About Check, a product by CyberDrain",
+        title: "About Bailey Guard by CGA",
         subtitle:
-          "Enterprise-grade protection against Microsoft 365 phishing attacks",
+          "A no cost guard dog for your Microsoft 365 password",
       },
     };
 
@@ -2524,14 +2525,13 @@ class CheckOptions {
 
           // Custom branding (matches managed_schema.json structure)
           customBranding: {
-            companyName: "CyberDrain",
-            productName: "Check Enterprise",
+            companyName: "Cyber Grants Alliance",
+            productName: "Bailey Guard by CGA",
             supportUrl: "",
             privacyPolicyUrl: "",
             aboutUrl: "",
-            primaryColor: "#F77F00",
-            logoUrl:
-              "https://cyberdrain.com/images/favicon_hu_20e77b0e20e363e.png",
+            primaryColor: "#165DFB",
+            logoUrl: "images/icon48.png",
           },
         };
 

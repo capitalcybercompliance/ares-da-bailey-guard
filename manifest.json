@@ -1,35 +1,45 @@
 {
   "manifest_version": 3,
-  "name": "Check by CyberDrain",
-  "version": "1.2.0",
-  "description": "Protect against phishing attacks targeting Microsoft 365 login pages with enterprise-grade detection",
+  "name": "Bailey Guard by CGA",
+  "short_name": "Bailey Guard",
+  "version": "1.0.0",
+  "description": "Bailey barks before you type your Microsoft 365 password into a fake sign in page. A no cost tool from Cyber Grants Alliance.",
   "permissions": [
     "storage",
     "activeTab",
     "tabs",
     "scripting",
     "webRequest",
-    "alarms",
-    "identity",
-    "identity.email"
+    "alarms"
   ],
-  "host_permissions": ["<all_urls>"],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "background": {
     "service_worker": "scripts/background.js",
     "type": "module"
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*", "file:///*/*"],
-      "js": ["scripts/browser-polyfill-inline.js", "scripts/content.js"],
-      "css": ["styles/content.css"],
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "file:///*/*"
+      ],
+      "js": [
+        "scripts/browser-polyfill-inline.js",
+        "scripts/content.js"
+      ],
+      "css": [
+        "styles/content.css"
+      ],
       "run_at": "document_idle",
       "all_frames": true
     }
   ],
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "Check",
+    "default_title": "Bailey Guard by CGA",
     "default_icon": {
       "16": "images/icon16.png",
       "32": "images/icon32.png",
@@ -56,13 +66,16 @@
         "scripts/browser-polyfill.js",
         "scripts/browser-polyfill-inline.js"
       ],
-      "matches": ["<all_urls>"]
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ],
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;"
+    "extension_pages": "script-src 'self'; object-src 'self';"
   },
   "storage": {
     "managed_schema": "config/managed_schema.json"
-  }
+  },
+  "homepage_url": "https://www.cybergrantsalliance.org/"
 }

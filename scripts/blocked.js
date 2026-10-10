@@ -1,3 +1,4 @@
+/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Blocked Page JavaScript - CSP Compliant External Script
  * Handles URL defanging, branding, and user interactions for blocked pages
@@ -156,7 +157,7 @@ async function reportFalsePositive() {
       version: "1.0",
       type: "false_positive_report",
       timestamp: new Date().toISOString(),
-      source: "Check Extension",
+      source: "Bailey Guard by CGA",
       extensionVersion: chrome.runtime.getManifest().version,
       data: {
         reportedUrl: document.getElementById("blockedUrl").textContent,
@@ -510,76 +511,29 @@ async function loadBranding() {
 
       // Apply branding from background script
       const companyName =
-        storageResult.companyName || storageResult.productName || "Check";
-      console.log("Setting company name from background to:", companyName);
+        storageResult.productName || storageResult.companyName || "Bailey Guard by CGA";
+      console.log("Setting product name from background to:", companyName);
       document.getElementById("companyName").textContent = companyName;
-      document.title = `Access Blocked - ${companyName}`;
+      document.title = `Blocked by ${companyName}`;
 
-      // Update product name if available
-      if (storageResult.productName) {
-        console.log("Setting product name:", storageResult.productName);
-        document.querySelector(
-          "h1"
-        ).textContent = `Access Blocked by ${storageResult.productName}`;
-      }
-
-      // Handle logo display - use custom logo or default branding
+      // Bailey mascot is the default image. A managed (enterprise) logo hosted
+      // on https replaces it; local extension paths keep the mascot.
       const customLogo = document.getElementById("customLogo");
       const defaultIcon = document.getElementById("defaultIcon");
-
-      if (customLogo && defaultIcon) {
-        if (storageResult.logoUrl) {
-          console.log(
-            "Setting custom logo as main icon:",
-            storageResult.logoUrl
-          );
-
-          // Try to load the custom logo
-          const logoSrc = storageResult.logoUrl.startsWith("http")
-            ? storageResult.logoUrl
-            : chrome.runtime.getURL(storageResult.logoUrl);
-
-          console.log("Loading logo from:", logoSrc);
-
-          customLogo.src = logoSrc;
-          customLogo.style.width = "80px";
-          customLogo.style.height = "80px";
-          customLogo.style.borderRadius = "50%";
-          customLogo.style.objectFit = "contain";
-          customLogo.style.background = "white";
-          customLogo.style.padding = "4px";
-          customLogo.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";
-          customLogo.style.border = "1px solid #e5e7eb";
-
-          customLogo.onload = () => {
-            console.log("Custom logo loaded successfully");
-            customLogo.style.display = "block";
-            defaultIcon.style.display = "none";
-          };
-          customLogo.onerror = () => {
-            console.warn(
-              "Failed to load custom logo, using default Check logo"
-            );
-            // Fall back to default Check logo
-            customLogo.src = chrome.runtime.getURL("images/icon128.png");
-            customLogo.style.display = "block";
-            defaultIcon.style.display = "none";
-          };
-        } else {
-          console.log("No custom logo configured, using default Check logo");
-          // Use default Check logo instead of Unicode icon
-          customLogo.src = chrome.runtime.getURL("images/icon48.png");
-          customLogo.style.width = "80px";
-          customLogo.style.height = "80px";
-          customLogo.style.borderRadius = "50%";
-          customLogo.style.objectFit = "contain";
-          customLogo.style.background = "white";
-          customLogo.style.padding = "4px";
-          customLogo.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";
-          customLogo.style.border = "1px solid #e5e7eb";
+      if (
+        customLogo &&
+        defaultIcon &&
+        storageResult.logoUrl &&
+        storageResult.logoUrl.startsWith("https://")
+      ) {
+        customLogo.onload = () => {
           customLogo.style.display = "block";
           defaultIcon.style.display = "none";
-        }
+        };
+        customLogo.onerror = () => {
+          console.warn("Failed to load custom logo, keeping Bailey");
+        };
+        customLogo.src = storageResult.logoUrl;
       }
 
       // Update primary color if available
@@ -591,8 +545,6 @@ async function loadBranding() {
             --primary-color: ${storageResult.primaryColor} !important;
             --primary-hover: ${storageResult.primaryColor}dd !important;
           }
-          .icon { background: ${storageResult.primaryColor} !important; }
-          h1 { color: ${storageResult.primaryColor} !important; }
           .btn-primary { background: ${storageResult.primaryColor} !important; }
           .btn-primary:hover { background: ${storageResult.primaryColor}dd !important; }
         `;
@@ -645,10 +597,11 @@ async function loadBranding() {
         const brandingConfig = await response.json();
         console.log("Loaded branding from file:", brandingConfig);
 
-        const companyName = brandingConfig.companyName || "Check";
-        console.log("Setting company name from file to:", companyName);
+        const companyName =
+          brandingConfig.productName || brandingConfig.companyName || "Bailey Guard by CGA";
+        console.log("Setting product name from file to:", companyName);
         document.getElementById("companyName").textContent = companyName;
-        document.title = `Access Blocked - ${companyName}`;
+        document.title = `Blocked by ${companyName}`;
       }
     } catch (fetchError) {
       console.warn("Could not load branding.json:", fetchError);
@@ -661,8 +614,8 @@ async function loadBranding() {
   const currentCompanyName = document.getElementById("companyName").textContent;
   if (!currentCompanyName || currentCompanyName.trim() === "") {
     console.log("No company name set, using final fallback");
-    document.getElementById("companyName").textContent = "Check";
-    document.title = "Access Blocked - Check";
+    document.getElementById("companyName").textContent = "Bailey Guard by CGA";
+    document.title = "Blocked by Bailey Guard by CGA";
   }
 
   // Hide contact button by default if no background config was loaded
@@ -1036,7 +989,7 @@ function populatePhishingIndicatorsList(indicators, details) {
     item.style.padding = "6px";
     item.style.background = "#f9fafb";
     item.style.borderRadius = "4px";
-    item.style.borderLeft = "3px solid #f77f00";
+    item.style.borderLeft = "3px solid #165DFB";
 
     const title = document.createElement("strong");
     title.textContent = id;

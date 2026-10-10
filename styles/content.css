@@ -1,3 +1,4 @@
+/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Check - Content Script Styles
  * Styles for overlays, notifications, and page modifications
@@ -5,8 +6,8 @@
 
 /* CSS Variables for theming */
 :root {
-  --check-primary-color: #F77F00;
-  --check-primary-hover: #E56F00;
+  --check-primary-color: #165DFB;
+  --check-primary-hover: #0F47D4;
 }
 
 /* Main notification styles */
@@ -28,8 +29,8 @@
 }
 
 .check-notification.error {
-  border-left: 4px solid #003049 !important;
-  background: #EBF0DF !important;
+  border-left: 4px solid #16163F !important;
+  background: #F0F4FF !important;
 }
 
 .check-notification.warning {
@@ -38,13 +39,13 @@
 }
 
 .check-notification.info {
-  border-left: 4px solid #005C63 !important;
-  background: #EBF0DF !important;
+  border-left: 4px solid #15803D !important;
+  background: #F0F4FF !important;
 }
 
 .check-notification.success {
-  border-left: 4px solid #005C63 !important;
-  background: #EBF0DF !important;
+  border-left: 4px solid #15803D !important;
+  background: #F0F4FF !important;
 }
 
 .check-notification .title {
@@ -217,9 +218,9 @@
 
 /* Suspicious element highlighting */
 .check-suspicious {
-  outline: 2px dashed #F77F00 !important;
+  outline: 2px dashed #165DFB !important;
   outline-offset: 2px !important;
-  background-color: rgba(247, 127, 0, 0.1) !important;
+  background-color: rgba(22, 93, 251, 0.1) !important;
 }
 
 .check-hidden {

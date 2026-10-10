@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+<!-- Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Access Blocked - Check</title>
+    <title>Blocked by Bailey Guard by CGA</title>
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      href="fonts/material-icons.css"
     />
     <style>
       * {
@@ -18,21 +19,22 @@
       body {
         font-family: "Gilroy", -apple-system, BlinkMacSystemFont, "Segoe UI",
           Roboto, "Helvetica Neue", Arial, sans-serif;
-        background: linear-gradient(135deg, #f77f00 0%, #003049 100%);
-        color: #003049;
+        background: linear-gradient(135deg, #165DFB 0%, #16163F 100%);
+        color: #16163F;
         min-height: 100vh;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
-        padding: 20px;
+        padding: 24px 20px;
       }
 
       .container {
         background: white;
         border-radius: 16px;
-        padding: 40px;
-        max-width: 600px;
+        padding: 32px 40px;
+        max-width: 660px;
         width: 100%;
+        margin: auto;
         text-align: center;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
       }
@@ -53,11 +55,65 @@
       }
 
       h1 {
-        font-size: 32px;
-        font-weight: 600;
-        color: #f77f00;
-        margin-bottom: 16px;
+        font-size: 30px;
+        line-height: 1.25;
+        font-weight: 700;
+        color: #B91C1C;
+        margin-bottom: 12px;
       }
+
+      .mascot {
+        width: 118px;
+        height: auto;
+        display: block;
+      }
+
+      .hero {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        text-align: left;
+        margin-bottom: 24px;
+      }
+
+      .hero .subtitle {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 560px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+
+      .woof {
+        display: inline-block;
+        background: #16163F;
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        padding: 4px 12px;
+        border-radius: 999px;
+        margin-bottom: 14px;
+      }
+
+      .advice {
+        text-align: left;
+        background: #F0F4FF;
+        border: 1px solid #BFDBFE;
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin: 0 0 24px;
+        color: #16163F;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .advice strong { display: block; margin-bottom: 4px; }
+      .advice ul { margin: 0; padding-left: 18px; }
+      .advice a { color: #165DFB; }
 
       .subtitle {
         font-size: 18px;
@@ -70,8 +126,8 @@
         background: #fef2f2;
         border: 1px solid #fecaca;
         border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 30px;
+        padding: 16px 20px;
+        margin-bottom: 20px;
         text-align: left;
       }
 
@@ -105,12 +161,12 @@
       }
 
       .btn-primary {
-        background: #f77f00;
+        background: #165DFB;
         color: white;
       }
 
       .btn-primary:hover {
-        background: #e56f00;
+        background: #0F47D4;
       }
 
       .btn-secondary {
@@ -252,9 +308,8 @@
       }
 
       .icon-container {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 30px;
+        flex: 0 0 auto;
+        margin: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -306,26 +361,39 @@
   </head>
   <body class="loading">
     <div class="container">
-      <div class="icon-container">
-        <img id="customLogo" class="company-logo" style="display: none; max-width: 80px; max-height: 80px; border-radius: 50%; object-fit: contain;" alt="Company Logo">
-        <div id="defaultIcon" class="icon material-icons">security</div>
+      <div class="hero">
+        <div class="icon-container">
+          <img id="customLogo" class="company-logo" style="display: none; max-width: 80px; max-height: 80px; object-fit: contain;" alt="Organization logo">
+          <img id="defaultIcon" class="mascot" src="images/bailey-mascot.png" alt="Bailey the golden doodle guard dog">
+        </div>
+        <div>
+          <div class="woof">WOOF</div>
+          <h1>This is not a real Microsoft sign in page.</h1>
+          <p class="subtitle">
+            Do not enter your password. Bailey blocked this page to keep your account safe.
+          </p>
+        </div>
       </div>
 
-      <h1>Access Blocked</h1>
-      <p class="subtitle">
-        This website has been blocked by your organization's security policy
-      </p>
-
       <div class="reason">
-        <div class="reason-title">Reason for blocking:</div>
+        <div class="reason-title">Why Bailey barked:</div>
         <div class="reason-text" id="blockReason">
           This website looks like it has tried to steal your login credentials,
           to prevent you from logging in we've blocked access.
         </div>
       </div>
 
+      <div class="advice">
+        <strong>What to do now</strong>
+        <ul>
+          <li>Close this tab. Do not go back and type your password.</li>
+          <li>If you already typed it, change your Microsoft 365 password now and tell your IT contact.</li>
+          <li>To sign in, type the address yourself: login.microsoftonline.com or office.com.</li>
+        </ul>
+      </div>
+
       <div class="actions">
-        <button class="btn btn-primary" id="goBackBtn">Go Back</button>
+        <button class="btn btn-primary" id="goBackBtn">Leave this page</button>
         <button class="btn btn-secondary" id="contactAdminBtn">
           Contact Admin
         </button>
@@ -409,10 +477,11 @@
 
       <div class="footer">
         <div id="companyBranding">
-          Protected by <strong id="companyName">Check</strong>
+          Protected by <strong id="companyName">Bailey Guard by CGA</strong>
         </div>
         <div style="margin-top: 8px">
-          For support, contact your IT administrator
+          A no cost tool from Cyber Grants Alliance.
+          <a href="https://www.cybergrantsalliance.org/" target="_blank" rel="noopener" style="color: #165DFB">cybergrantsalliance.org</a>
         </div>
       </div>
     </div>

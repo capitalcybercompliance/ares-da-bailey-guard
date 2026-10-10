@@ -1,44 +1,39 @@
 {
-  "companyName": "CyberDrain",
-  "productName": "Check",
-  "supportUrl": "",
-  "privacyPolicyUrl": "",
-  "aboutUrl": "",
-  "version": "1.1.0",
-  "description": "Protect against phishing attacks targeting Microsoft 365 login pages with enterprise-grade detection",
+  "companyName": "Cyber Grants Alliance",
+  "productName": "Bailey Guard by CGA",
+  "supportUrl": "https://www.cybergrantsalliance.org/",
+  "privacyPolicyUrl": "https://www.cybergrantsalliance.org/",
+  "aboutUrl": "https://www.cybergrantsalliance.org/",
+  "version": "1.0.0",
+  "description": "Bailey barks before you type your Microsoft 365 password into a fake sign in page.",
   "branding": {
-    "primaryColor": "#F77F00",
-    "primaryHover": "#E56F00",
-    "primaryLight": "rgba(247, 127, 0, 0.1)",
-    "primaryDark": "#D96800",
-    "secondaryColor": "#003049",
-    "secondaryHover": "#004B73",
-    "secondaryLight": "rgba(0, 48, 73, 0.1)",
-    "secondaryDark": "#002236",
-    "accentColor": "#005C63",
-    "successColor": "#005C63",
-    "warningColor": "#F77F00",
+    "primaryColor": "#165DFB",
+    "primaryHover": "#0F47D4",
+    "primaryLight": "rgba(22, 93, 251, 0.1)",
+    "primaryDark": "#0F47D4",
+    "secondaryColor": "#16163F",
+    "secondaryHover": "#23235C",
+    "secondaryLight": "rgba(22, 22, 63, 0.1)",
+    "secondaryDark": "#0D1226",
+    "accentColor": "#60A5FA",
+    "successColor": "#15803D",
+    "warningColor": "#D97706",
     "errorColor": "#DC2626",
     "textPrimary": "#FFFFFF",
     "textSecondary": "#9CA3AF",
     "textMuted": "#6B7280",
-    "textInverse": "#003049",
-    "bgPrimary": "#003049",
+    "textInverse": "#16163F",
+    "bgPrimary": "#16163F",
     "bgSecondary": "rgba(255, 255, 255, 0.05)",
     "bgSurface": "rgba(255, 255, 255, 0.03)",
     "border": "rgba(255, 255, 255, 0.1)",
-    "borderHover": "rgba(247, 127, 0, 0.3)"
+    "borderHover": "rgba(22, 93, 251, 0.3)"
   },
   "assets": {
     "logoUrl": "images/icon48.png",
     "iconUrl": "images/icon32.png",
     "faviconUrl": "images/icon16.png",
-    "bannerUrl": "images/banner.png",
-    "screenshotUrls": [
-      "images/screenshot1.png",
-      "images/screenshot2.png",
-      "images/screenshot3.png"
-    ]
+    "mascotUrl": "images/bailey-mascot.png"
   },
   "customization": {
     "showCompanyBranding": true,
@@ -48,36 +43,26 @@
     "customIconsEnabled": true
   },
   "features": {
-    "welcomeMessage": "Welcome to Check, CyberDrain's Microsoft 365 Phishing Protection - Safeguard Your Organization",
-    "tagline": "Advanced phishing detection for Microsoft 365 login pages by CyberDrain",
-    "securityBadgeText": "Protected by CyberDrain",
-    "blockedPageTitle": "Phishing Attempt Blocked by CyberDrain",
-    "blockedPageMessage": "This page appears to be a phishing attempt targeting Microsoft 365 credentials. CyberDrain has blocked access to protect your organization."
+    "welcomeMessage": "Hi, I am Bailey. I watch for fake Microsoft 365 sign in pages so you do not hand your password to a scammer.",
+    "tagline": "A no cost phishing guard from Cyber Grants Alliance",
+    "securityBadgeText": "Checked by Bailey Guard",
+    "blockedPageTitle": "Woof. Bailey stopped a fake sign in page.",
+    "blockedPageMessage": "This is not a real Microsoft sign in page. Do not enter your password."
   },
   "customText": {
-    "extensionDescription": "Check provides enterprise-grade detection and blocking of phishing attempts targeting Microsoft 365 login pages, with comprehensive policy management and audit capabilities.",
+    "extensionDescription": "Bailey Guard by CGA warns you before you type your Microsoft 365 password into a fake sign in page. Detection runs inside your browser.",
     "securityFeatures": [
-      "Real-time Microsoft 365 phishing detection",
-      "Advanced login page verification",
-      "Cryptographic verification badges",
-      "Enterprise policy enforcement",
-      "Comprehensive security audit logging",
-      "Custom detection rules engine"
+      "Spots fake Microsoft 365 sign in pages",
+      "Confirms real Microsoft sign in pages",
+      "Blocks pages that try to send your password somewhere else",
+      "Detection runs in your browser, nothing is sent out"
     ],
     "enterpriseFeatures": [
-      "Group Policy (GPO) support",
-      "Microsoft Intune integration",
-      "Centralized management console",
-      "Security compliance reporting",
-      "Custom phishing detection rules",
-      "24/7 enterprise security support"
+      "Managed settings through Chrome policy"
     ]
   },
   "socialMedia": {
-    "twitter": "https://twitter.com/cyberdrain",
-    "linkedin": "https://linkedin.com/company/cyberdrain",
-    "youtube": "https://youtube.com/c/cyberdrain",
-    "github": "https://github.com/cyberdrain"
+    "website": "https://www.cybergrantsalliance.org/"
   },
   "whiteLabel": {
     "enabled": true,
@@ -98,19 +83,9 @@
     ]
   },
   "licensing": {
-    "licenseKey": "",
-    "licensedTo": "",
-    "licenseType": "enterprise",
-    "licenseExpiry": null,
-    "maxUsers": null,
-    "features": [
-      "unlimited_users",
-      "white_labeling",
-      "enterprise_support",
-      "compliance_reporting",
-      "custom_rules",
-      "api_access"
-    ]
+    "license": "AGPL-3.0",
+    "basedOn": "Bailey Guard by CGA is based on Check by CyberDrain (AGPL 3.0)",
+    "upstream": "https://github.com/CyberDrain/Check"
   },
   "deployment": {
     "supportedPlatforms": [
@@ -123,9 +98,8 @@
     "minimumVersion": "88",
     "manifestVersion": 3,
     "deploymentMethods": [
-      "Group Policy (GPO)",
-      "Microsoft Intune",
-      "Chrome Enterprise",
+      "Chrome Web Store",
+      "Chrome Enterprise policy",
       "Manual Installation"
     ]
   },
@@ -147,10 +121,12 @@
     "updateCheckInterval": 86400000
   },
   "metadata": {
-    "created": "2024-01-01T00:00:00Z",
-    "modified": "2024-01-01T00:00:00Z",
-    "author": "Check Technologies",
-    "maintainer": "security-team@check.com",
+    "created": "2026-10-09T00:00:00Z",
+    "modified": "2026-10-09T00:00:00Z",
+    "author": "Cyber Grants Alliance",
     "schema_version": "1.0"
-  }
+  },
+  "primaryColor": "#165DFB",
+  "secondaryColor": "#16163F",
+  "logoUrl": "images/icon48.png"
 }
