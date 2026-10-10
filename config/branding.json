@@ -4,7 +4,7 @@
   "supportUrl": "https://www.cybergrantsalliance.org/",
   "privacyPolicyUrl": "https://www.cybergrantsalliance.org/",
   "aboutUrl": "https://www.cybergrantsalliance.org/",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Bailey barks before you type your Microsoft 365 password into a fake sign in page.",
   "branding": {
     "primaryColor": "#165DFB",

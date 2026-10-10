@@ -1037,7 +1037,7 @@ class CheckOptions {
         subtitle: "View security events and extension activity",
       },
       about: {
-        title: "About Bailey Guard by CGA",
+        title: "About Bailey Guard by Cyber Grants Alliance",
         subtitle:
           "A no cost guard dog for your Microsoft 365 password",
       },

@@ -1,6 +1,6 @@
 {
   "name": "bailey-guard-by-cga",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Bailey Guard by CGA: a no cost Chrome extension that warns before you type your Microsoft 365 password into a fake sign in page. Based on Check by CyberDrain.",
   "scripts": {
     "test": "node --test tests/",
