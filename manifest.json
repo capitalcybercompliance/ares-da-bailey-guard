@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Marshall Bailey by Cyber Grants Alliance",
   "short_name": "Marshall Bailey",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Bailey barks before you type your Microsoft 365 password into a fake sign in page. A no cost tool from Cyber Grants Alliance.",
   "permissions": [
     "storage",
