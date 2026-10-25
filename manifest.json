@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Bailey Guard by CGA",
-  "short_name": "Bailey Guard",
-  "version": "1.0.4",
+  "name": "Marshall Bailey by Cyber Grants Alliance",
+  "short_name": "Marshall Bailey",
+  "version": "1.1.0",
   "description": "Bailey barks before you type your Microsoft 365 password into a fake sign in page. A no cost tool from Cyber Grants Alliance.",
   "permissions": [
     "storage",
@@ -39,7 +39,7 @@
   ],
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "Bailey Guard by CGA",
+    "default_title": "Marshall Bailey by Cyber Grants Alliance",
     "default_icon": {
       "16": "images/icon16.png",
       "32": "images/icon32.png",

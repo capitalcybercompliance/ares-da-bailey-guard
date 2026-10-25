@@ -1,4 +1,4 @@
-/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
+/* Modified 2026-10-09 by Cyber Grants Alliance for Marshall Bailey by Cyber Grants Alliance. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Check - Final Rule-Driven Content Script
  * 100% rule-driven architecture - NO hardcoded detections
@@ -6050,7 +6050,7 @@ if (window.checkExtensionLoaded) {
         const blockedByLine = document.createElement("div");
         blockedByLine.style.color = "#777";
         blockedByLine.style.fontSize = "14px";
-        blockedByLine.textContent = "Blocked by: Bailey Guard by CGA";
+        blockedByLine.textContent = "Blocked by: Marshall Bailey by Cyber Grants Alliance";
 
         const noOverrideLine = document.createElement("div");
         noOverrideLine.style.color = "#777";
@@ -6223,7 +6223,7 @@ if (window.checkExtensionLoaded) {
         if (!bannerEl) return;
         try {
           const companyName =
-            branding.productName || branding.companyName || "Bailey Guard by CGA";
+            branding.productName || branding.companyName || "Marshall Bailey by Cyber Grants Alliance";
           const supportEmail = branding.supportEmail || "";
           let logoUrl = branding.logoUrl || "";
           const packagedFallback = chrome.runtime.getURL("images/icon48.png");
@@ -7171,7 +7171,7 @@ if (window.checkExtensionLoaded) {
    */
   function initializeProtection() {
     try {
-      logger.log("Initializing Bailey Guard");
+      logger.log("Initializing Marshall Bailey");
       logger.log(`Initial document.readyState: ${document.readyState}`);
 
       // Console capture is now setup only when developer mode is enabled (see loadDeveloperConsoleLoggingSetting)

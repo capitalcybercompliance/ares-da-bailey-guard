@@ -1,4 +1,4 @@
-/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
+/* Modified 2026-10-09 by Cyber Grants Alliance for Marshall Bailey by Cyber Grants Alliance. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Configuration Manager for Check
  * Handles enterprise configuration, branding, and settings management
@@ -46,10 +46,10 @@ export class ConfigManager {
         this.brandingConfig
       );
 
-      logger.log("Bailey Guard: Configuration loaded successfully");
+      logger.log("Marshall Bailey: Configuration loaded successfully");
       return this.config;
     } catch (error) {
-      logger.error("Bailey Guard: Failed to load configuration:", error);
+      logger.error("Marshall Bailey: Failed to load configuration:", error);
       throw error;
     }
   }
@@ -58,7 +58,7 @@ export class ConfigManager {
     // Migrate legacy detectionRules.customRulesUrl to top-level customRulesUrl
     if (config.detectionRules?.customRulesUrl && !config.customRulesUrl) {
       config.customRulesUrl = config.detectionRules.customRulesUrl;
-      logger.log("Bailey Guard: Migrated legacy customRulesUrl to top-level");
+      logger.log("Marshall Bailey: Migrated legacy customRulesUrl to top-level");
     }
 
     // Migrate legacy detectionRules.updateInterval to top-level updateInterval
@@ -66,7 +66,7 @@ export class ConfigManager {
       // Convert milliseconds to hours if needed
       const interval = config.detectionRules.updateInterval;
       config.updateInterval = interval > 1000 ? Math.round(interval / 3600000) : interval;
-      logger.log("Bailey Guard: Migrated legacy updateInterval to top-level");
+      logger.log("Marshall Bailey: Migrated legacy updateInterval to top-level");
     }
 
     return config;
@@ -98,7 +98,7 @@ export class ConfigManager {
       if (isDevelopment && simulateEnterpriseMode) {
         // Return mock enterprise configuration for development/testing
         logger.log(
-          "Bailey Guard: Using mock enterprise configuration (simulate mode enabled)"
+          "Marshall Bailey: Using mock enterprise configuration (simulate mode enabled)"
         );
         return {
           // Extension configuration
@@ -133,13 +133,13 @@ export class ConfigManager {
       const managedConfig = await safe(storage.managed.get(null));
 
       if (managedConfig && Object.keys(managedConfig).length > 0) {
-        logger.log("Bailey Guard: Enterprise configuration found");
+        logger.log("Marshall Bailey: Enterprise configuration found");
         return managedConfig;
       }
 
       return {};
     } catch (error) {
-      logger.log("Bailey Guard: No enterprise configuration available");
+      logger.log("Marshall Bailey: No enterprise configuration available");
       return {};
     }
   }
@@ -168,7 +168,7 @@ export class ConfigManager {
         }
       };
 
-      // Branding is fixed to Bailey Guard by CGA: white labeling was removed (Nikhil 2026-10-10).
+      // Branding is fixed to Marshall Bailey by Cyber Grants Alliance: white labeling was removed (Nikhil 2026-10-10).
 
       // Fallback: Load branding configuration from config file with timeout
       const controller = new AbortController();
@@ -183,13 +183,13 @@ export class ConfigManager {
 
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const brandingConfig = await response.json();
-        logger.log("Bailey Guard: Using branding from config file");
+        logger.log("Marshall Bailey: Using branding from config file");
         return brandingConfig;
       } finally {
         clearTimeout(timeoutId);
       }
     } catch (error) {
-      logger.log("Bailey Guard: Using default branding configuration");
+      logger.log("Marshall Bailey: Using default branding configuration");
       return this.getDefaultBrandingConfig();
     }
   }
@@ -228,7 +228,7 @@ export class ConfigManager {
     // Auto-enable debug logging when developer console logging is enabled
     if (merged.enableDeveloperConsoleLogging === true && merged.enableDebugLogging !== true) {
       merged.enableDebugLogging = true;
-      logger.log("Bailey Guard: Auto-enabled debug logging (developer console logging is enabled)");
+      logger.log("Marshall Bailey: Auto-enabled debug logging (developer console logging is enabled)");
     }
 
     // Ensure enterprise policies cannot be overridden
@@ -325,7 +325,7 @@ export class ConfigManager {
     return {
       // Company branding
       companyName: "Cyber Grants Alliance",
-      productName: "Bailey Guard by CGA",
+      productName: "Marshall Bailey by Cyber Grants Alliance",
       version: "1.0.0",
 
       // Visual branding
@@ -373,7 +373,7 @@ export class ConfigManager {
       await safe(storage.local.set({ config: defaultConfig }));
       this.config = defaultConfig;
     } catch (error) {
-      logger.error("Bailey Guard: Failed to set default config:", error);
+      logger.error("Marshall Bailey: Failed to set default config:", error);
       this.config = this.getDefaultConfig();
     }
   }
@@ -443,7 +443,7 @@ export class ConfigManager {
 
       return this.config;
     } catch (error) {
-      logger.error("Bailey Guard: Failed to update configuration:", error);
+      logger.error("Marshall Bailey: Failed to update configuration:", error);
       throw error;
     }
   }
@@ -508,7 +508,7 @@ export class ConfigManager {
       };
 
       logger.log(
-        `Bailey Guard: Migrating configuration from version ${previousVersion}`
+        `Marshall Bailey: Migrating configuration from version ${previousVersion}`
       );
 
       const currentConfig = await safe(storage.local.get(["config"]));
@@ -520,9 +520,9 @@ export class ConfigManager {
       //   // Migration logic for 1.1.0
       // }
 
-      logger.log("Bailey Guard: Configuration migration completed");
+      logger.log("Marshall Bailey: Configuration migration completed");
     } catch (error) {
-      logger.error("Bailey Guard: Configuration migration failed:", error);
+      logger.error("Marshall Bailey: Configuration migration failed:", error);
     }
   }
 
@@ -579,10 +579,10 @@ export class ConfigManager {
         this.brandingConfig = importData.branding;
       }
 
-      logger.log("Bailey Guard: Configuration imported successfully");
+      logger.log("Marshall Bailey: Configuration imported successfully");
       return true;
     } catch (error) {
-      logger.error("Bailey Guard: Failed to import configuration:", error);
+      logger.error("Marshall Bailey: Failed to import configuration:", error);
       throw error;
     }
   }

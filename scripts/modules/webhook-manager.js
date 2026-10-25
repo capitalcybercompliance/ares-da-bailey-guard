@@ -1,4 +1,4 @@
-/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
+/* Modified 2026-10-09 by Cyber Grants Alliance for Marshall Bailey by Cyber Grants Alliance. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 import logger from "../utils/logger.js";
 
 export class WebhookManager {
@@ -60,7 +60,7 @@ export class WebhookManager {
       version: "1.0",
       type: webhookType,
       timestamp: new Date().toISOString(),
-      source: "Bailey Guard by CGA",
+      source: "Marshall Bailey by Cyber Grants Alliance",
       extensionVersion:
         metadata.extensionVersion || chrome.runtime.getManifest().version,
       data: {},

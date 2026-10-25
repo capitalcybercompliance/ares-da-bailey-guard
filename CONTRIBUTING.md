@@ -1,6 +1,6 @@
-# Contributing to Bailey Guard by CGA
+# Contributing to Marshall Bailey by Cyber Grants Alliance
 
-Thanks for helping. Bailey Guard is plain JavaScript, Manifest V3, with no build step.
+Thanks for helping. Marshall Bailey is plain JavaScript, Manifest V3, with no build step.
 
 1. Load the folder unpacked in Chrome (`chrome://extensions`, Developer mode, Load unpacked).
 2. Make your change and reload the extension.

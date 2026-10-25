@@ -1,4 +1,4 @@
-/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
+/* Modified 2026-10-09 by Cyber Grants Alliance for Marshall Bailey by Cyber Grants Alliance. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Check - Background Service Worker
  * Handles core extension functionality, policy enforcement, and threat detection
@@ -16,7 +16,7 @@ import { DomainSquattingDetector } from "./modules/domain-squatting-detector.js"
 import logger from "./utils/logger.js";
 import { store as storeLog } from "./utils/background-logger.js";
 
-console.log("Bailey Guard: Background service worker loaded");
+console.log("Marshall Bailey: Background service worker loaded");
 // Initialize logger with default settings before any components use it
 logger.init({ level: "info", enabled: true });
 
@@ -65,7 +65,7 @@ class RogueAppsManager {
 
     // Default configuration (fallback if detection rules not available)
     this.defaultConfig = {
-      enabled: false, // Bailey Guard: off by default, see loadConfiguration
+      enabled: false, // Marshall Bailey: off by default, see loadConfiguration
       source_url:
         "https://huntresslabs.github.io/rogueapps/rogueapps.json",
       cache_duration: 86400000, // 24 hours
@@ -87,7 +87,7 @@ class RogueAppsManager {
 
       this.config = detectionRules.rogue_apps_detection || this.defaultConfig;
 
-      // Bailey Guard: the remote rogue OAuth app list is off by default so the
+      // Marshall Bailey: the remote rogue OAuth app list is off by default so the
       // detection rules file is the only network request the extension makes.
       // (As of 2026-10-09 the upstream list URL redirects to a sign in page.)
       this.config = { ...this.config, enabled: false };
@@ -479,7 +479,7 @@ class CheckBackground {
 
   getDefaultPolicy() {
     return {
-      BrandingName: "Bailey Guard by CGA",
+      BrandingName: "Marshall Bailey by Cyber Grants Alliance",
       BrandingImage: "",
       ExtraAllowlist: [],
       CIPPReportingServer: "",
@@ -851,7 +851,7 @@ class CheckBackground {
   }
 
   async handleStartup() {
-    logger.log("Bailey Guard: Extension startup detected");
+    logger.log("Marshall Bailey: Extension startup detected");
     const config = (await safe(this.configManager.refreshConfig())) || {};
     logger.init({
       level: "info",
@@ -860,7 +860,7 @@ class CheckBackground {
   }
 
   async handleInstalled(details) {
-    logger.log("Bailey Guard: Extension installed/updated:", details.reason);
+    logger.log("Marshall Bailey: Extension installed/updated:", details.reason);
 
     if (details.reason === "install") {
       // Set default configuration
@@ -970,7 +970,7 @@ class CheckBackground {
       // Log URL access for audit purposes - fire-and-log pattern
       queueMicrotask(() => this.logUrlAccess(tab.url, tabId).catch(() => {}));
     } catch (error) {
-      logger.error("Bailey Guard: Error handling tab update:", error);
+      logger.error("Marshall Bailey: Error handling tab update:", error);
     }
   }
 
@@ -983,7 +983,7 @@ class CheckBackground {
       if (messageType === "ping") {
         sendResponse({
           success: true,
-          message: "Bailey Guard background script is running",
+          message: "Marshall Bailey background script is running",
           timestamp: new Date().toISOString(),
           initialized: this.isInitialized,
           fallbackMode: !this.isInitialized,
@@ -1348,7 +1348,7 @@ class CheckBackground {
               }
             } catch (contentError) {
               console.log(
-                "Bailey Guard: Content script not available, using basic analysis"
+                "Marshall Bailey: Content script not available, using basic analysis"
               );
             }
 
@@ -1403,7 +1403,7 @@ class CheckBackground {
             const config = await this.configManager.getConfig();
             sendResponse({ success: true, config });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to get config:", error);
+            logger.error("Marshall Bailey: Failed to get config:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1424,7 +1424,7 @@ class CheckBackground {
               isManaged: Object.keys(managedPolicies).length > 0,
             });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to get policies:", error);
+            logger.error("Marshall Bailey: Failed to get policies:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1434,7 +1434,7 @@ class CheckBackground {
             const statistics = await this.getStatistics();
             sendResponse({ success: true, statistics });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to get statistics:", error);
+            logger.error("Marshall Bailey: Failed to get statistics:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1445,7 +1445,7 @@ class CheckBackground {
             const cacheInfo = this.detectionRulesManager.getCacheInfo();
             sendResponse({ success: true, rules, cacheInfo });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to get detection rules:", error);
+            logger.error("Marshall Bailey: Failed to get detection rules:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1471,7 +1471,7 @@ class CheckBackground {
             }
           } catch (error) {
             logger.error(
-              "Bailey Guard: Failed to force update detection rules:",
+              "Marshall Bailey: Failed to force update detection rules:",
               error
             );
             sendResponse({ success: false, error: error.message });
@@ -1489,7 +1489,7 @@ class CheckBackground {
             const result = this.domainSquattingDetector.checkDomain(domain);
             sendResponse({ success: true, result });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to check domain squatting:", error);
+            logger.error("Marshall Bailey: Failed to check domain squatting:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1509,7 +1509,7 @@ class CheckBackground {
             await chrome.tabs.update(sender.tab.id, { url: message.url });
             sendResponse({ success: true });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to redirect tab to blocked page:", error);
+            logger.error("Marshall Bailey: Failed to redirect tab to blocked page:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1584,7 +1584,7 @@ class CheckBackground {
 
             sendResponse({ success: true });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to update config:", error);
+            logger.error("Marshall Bailey: Failed to update config:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1604,7 +1604,7 @@ class CheckBackground {
 
             sendResponse({ success: true });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to handle config update:", error);
+            logger.error("Marshall Bailey: Failed to handle config update:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1631,7 +1631,7 @@ class CheckBackground {
             const profileInfo = await this.getCurrentProfile();
             sendResponse({ success: true, profile: profileInfo });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to get profile info:", error);
+            logger.error("Marshall Bailey: Failed to get profile info:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1641,7 +1641,7 @@ class CheckBackground {
             const profileInfo = await this.refreshProfileInformation();
             sendResponse({ success: true, profile: profileInfo });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to refresh profile info:", error);
+            logger.error("Marshall Bailey: Failed to refresh profile info:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1663,7 +1663,7 @@ class CheckBackground {
             );
             sendResponse({ success: true, ...result });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to check rogue app:", error);
+            logger.error("Marshall Bailey: Failed to check rogue app:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1678,7 +1678,7 @@ class CheckBackground {
             await this.handleCippReport(message.payload);
             sendResponse({ success: true });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to send CIPP report:", error);
+            logger.error("Marshall Bailey: Failed to send CIPP report:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1710,7 +1710,7 @@ class CheckBackground {
 
             sendResponse({ success: result.success, result: result });
           } catch (error) {
-            logger.error("Bailey Guard: Failed to send webhook:", error);
+            logger.error("Marshall Bailey: Failed to send webhook:", error);
             sendResponse({ success: false, error: error.message });
           }
           break;
@@ -1719,7 +1719,7 @@ class CheckBackground {
           sendResponse({ success: false, error: "Unknown message type" });
       }
     } catch (error) {
-      logger.error("Bailey Guard: Error handling message:", error);
+      logger.error("Marshall Bailey: Error handling message:", error);
       this.errorCount++;
 
       // If we've had too many errors, try to reinitialize
@@ -1742,7 +1742,7 @@ class CheckBackground {
   async handleStorageChange(changes, namespace) {
     if (namespace === "managed") {
       // Enterprise policy changes
-      logger.log("Bailey Guard: Enterprise policy updated");
+      logger.log("Marshall Bailey: Enterprise policy updated");
       await safe(this.policyManager.loadPolicies());
       const config = (await safe(this.configManager.refreshConfig())) || {};
       logger.init({
@@ -1764,7 +1764,7 @@ class CheckBackground {
 
       const url = exists?.url;
       if (!url) {
-        logger.warn("Bailey Guard: No URL for tab", tabId);
+        logger.warn("Marshall Bailey: No URL for tab", tabId);
         return;
       }
 
@@ -1772,7 +1772,7 @@ class CheckBackground {
       try {
         protocol = new URL(url).protocol;
       } catch {
-        logger.warn("Bailey Guard: Invalid URL, skipping content script:", url);
+        logger.warn("Marshall Bailey: Invalid URL, skipping content script:", url);
         return;
       }
 
@@ -1787,7 +1787,7 @@ class CheckBackground {
 
       if (disallowed.includes(protocol)) {
         logger.warn(
-          "Bailey Guard: Skipping content script injection for disallowed URL:",
+          "Marshall Bailey: Skipping content script injection for disallowed URL:",
           url
         );
         return;
@@ -1800,7 +1800,7 @@ class CheckBackground {
         })
       );
     } catch (error) {
-      logger.error("Bailey Guard: Failed to inject content script:", error);
+      logger.error("Marshall Bailey: Failed to inject content script:", error);
     }
   }
 
@@ -1855,7 +1855,7 @@ class CheckBackground {
 
     // Gate noisy logs behind debug config
     if (config?.enableDebugLogging) {
-      logger.log("Bailey Guard: Security Event:", logEntry);
+      logger.log("Marshall Bailey: Security Event:", logEntry);
     }
 
     // Use batched storage writes
@@ -2024,7 +2024,7 @@ class CheckBackground {
       // Inject content script for all other URLs
       return true;
     } catch (error) {
-      logger.warn("Bailey Guard: Invalid URL for content script injection:", url);
+      logger.warn("Marshall Bailey: Invalid URL for content script injection:", url);
       return false;
     }
   }

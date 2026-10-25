@@ -1,11 +1,11 @@
-// Bailey Guard by CGA: build the Chrome Web Store zip.
-// Usage: bun scripts/package.ts   (writes dist/bailey-guard-by-cga-<version>.zip)
+// Marshall Bailey by Cyber Grants Alliance: build the Chrome Web Store zip.
+// Usage: bun scripts/package.ts   (writes dist/marshall-bailey-by-cga-<version>.zip)
 import { $ } from "bun";
 import { mkdirSync, rmSync, existsSync } from "node:fs";
 
 const root = new URL("..", import.meta.url).pathname;
 const manifest = await Bun.file(root + "manifest.json").json();
-const out = `${root}dist/bailey-guard-by-cga-${manifest.version}.zip`;
+const out = `${root}dist/marshall-bailey-by-cga-${manifest.version}.zip`;
 const include = [
   "manifest.json", "blocked.html", "LICENSE", "NOTICE",
   "config", "fonts", "images", "options", "popup", "rules", "styles",

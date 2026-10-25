@@ -1,4 +1,4 @@
-/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
+/* Modified 2026-10-09 by Cyber Grants Alliance for Marshall Bailey by Cyber Grants Alliance. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Check - Popup JavaScript
  * Handles popup UI interactions and communication with background script
@@ -196,20 +196,20 @@ class CheckPopup {
   async initialize() {
     try {
       this.showLoading("Initializing...");
-      console.log("Bailey Guard: Initializing popup...");
+      console.log("Marshall Bailey: Initializing popup...");
       const backgroundReady = await this.waitForBackgroundScript();
-      console.log("Bailey Guard: Background script ready:", backgroundReady);
+      console.log("Marshall Bailey: Background script ready:", backgroundReady);
       if (!backgroundReady) {
         console.warn(
-          "Bailey Guard: Background script not available, using fallback mode"
+          "Marshall Bailey: Background script not available, using fallback mode"
         );
-        console.log("Bailey Guard: Using fallback configuration");
+        console.log("Marshall Bailey: Using fallback configuration");
         this.config = {
           showNotifications: true,
           enableDebugLogging: false,
         };
         console.log("Still loading");
-        this.brandingConfig = { companyName: "Cyber Grants Alliance", productName: "Bailey Guard by CGA" };
+        this.brandingConfig = { companyName: "Cyber Grants Alliance", productName: "Marshall Bailey by Cyber Grants Alliance" };
         this.applyBranding();
         console.log("Applying default branding");
 
@@ -264,7 +264,7 @@ class CheckPopup {
 
       this.hideLoading();
     } catch (error) {
-      console.error("Bailey Guard: Failed to initialize popup:", error);
+      console.error("Marshall Bailey: Failed to initialize popup:", error);
       this.showNotification("Failed to initialize extension", "error");
       this.hideLoading();
     }
@@ -278,7 +278,7 @@ class CheckPopup {
       });
       return tabs[0];
     } catch (error) {
-      console.error("Bailey Guard: Failed to get current tab:", error);
+      console.error("Marshall Bailey: Failed to get current tab:", error);
       return null;
     }
   }
@@ -290,7 +290,7 @@ class CheckPopup {
           chrome.runtime.sendMessage({ type: "GET_CONFIG" }, (response) => {
             if (chrome.runtime.lastError) {
               console.warn(
-                "Bailey Guard: Background script connection failed:",
+                "Marshall Bailey: Background script connection failed:",
                 chrome.runtime.lastError.message
               );
 
@@ -305,7 +305,7 @@ class CheckPopup {
                 return;
               } else {
                 console.warn(
-                  "Bailey Guard: Using default configuration after all retries failed"
+                  "Marshall Bailey: Using default configuration after all retries failed"
                 );
                 this.config = {
                   extensionEnabled: true,
@@ -325,7 +325,7 @@ class CheckPopup {
             resolve();
           });
         } catch (error) {
-          console.error("Bailey Guard: Error sending message:", error);
+          console.error("Marshall Bailey: Error sending message:", error);
           if (retryCount < 3) {
             console.log(
               `Retrying configuration load in 5 seconds... (attempt ${
@@ -381,7 +381,7 @@ class CheckPopup {
       console.warn("Popup: Using fallback branding configuration");
       this.brandingConfig = {
         companyName: "Cyber Grants Alliance",
-        productName: "Bailey Guard by CGA",
+        productName: "Marshall Bailey by Cyber Grants Alliance",
         logoUrl: "images/icon48.png",
         supportUrl: "https://www.cybergrantsalliance.org/",
         privacyPolicyUrl: "https://www.cybergrantsalliance.org/",
@@ -392,7 +392,7 @@ class CheckPopup {
       console.error("Error loading branding configuration:", error);
       this.brandingConfig = {
         companyName: "Cyber Grants Alliance",
-        productName: "Bailey Guard by CGA",
+        productName: "Marshall Bailey by Cyber Grants Alliance",
         logoUrl: "images/icon48.png",
         supportUrl: "https://www.cybergrantsalliance.org/",
         privacyPolicyUrl: "https://www.cybergrantsalliance.org/",
@@ -407,7 +407,7 @@ class CheckPopup {
 
     // Update title
     this.elements.brandingTitle.textContent =
-      this.brandingConfig.productName || "Bailey Guard by CGA";
+      this.brandingConfig.productName || "Marshall Bailey by Cyber Grants Alliance";
 
     // Update logo with fallback handling
     if (this.brandingConfig.logoUrl) {
@@ -707,7 +707,7 @@ class CheckPopup {
         this.elements.blockedNotice.style.display = "block";
       }
     } catch (error) {
-      console.warn("Bailey Guard: Failed to parse blocked URL:", error);
+      console.warn("Marshall Bailey: Failed to parse blocked URL:", error);
     }
 
     // Load stored debug data for the blocked page
@@ -744,7 +744,7 @@ class CheckPopup {
           this.showSecurityBadge("neutral", "Analysis unavailable");
         }
       } catch (error) {
-        console.warn("Bailey Guard: Failed to get URL analysis after retries:", error);
+        console.warn("Marshall Bailey: Failed to get URL analysis after retries:", error);
         this.showSecurityBadge("neutral", "Analysis unavailable");
       }
 
@@ -1068,7 +1068,7 @@ class CheckPopup {
         () => {
           if (chrome.runtime.lastError) {
             console.error(
-              "Bailey Guard: Failed to open settings:",
+              "Marshall Bailey: Failed to open settings:",
               chrome.runtime.lastError.message
             );
           } else {
@@ -1077,7 +1077,7 @@ class CheckPopup {
         }
       );
     } catch (error) {
-      console.error("Bailey Guard: Failed to open settings:", error);
+      console.error("Marshall Bailey: Failed to open settings:", error);
     }
   }
 
@@ -1104,7 +1104,7 @@ class CheckPopup {
         chrome.tabs.create({ url }, () => {
           if (chrome.runtime.lastError) {
             console.error(
-              "Bailey Guard: Failed to open link:",
+              "Marshall Bailey: Failed to open link:",
               chrome.runtime.lastError.message
             );
           } else {
@@ -1112,7 +1112,7 @@ class CheckPopup {
           }
         });
       } catch (error) {
-        console.error("Bailey Guard: Failed to open link:", error);
+        console.error("Marshall Bailey: Failed to open link:", error);
       }
     }
   }
@@ -1130,7 +1130,7 @@ class CheckPopup {
             !chrome.runtime.lastError && response && response.success;
           if (chrome.runtime.lastError) {
             console.warn(
-              "Bailey Guard: Background script ping failed:",
+              "Marshall Bailey: Background script ping failed:",
               chrome.runtime.lastError.message
             );
           }
@@ -1138,7 +1138,7 @@ class CheckPopup {
         });
       } catch (error) {
         clearTimeout(timeout);
-        console.warn("Bailey Guard: Failed to ping background script:", error);
+        console.warn("Marshall Bailey: Failed to ping background script:", error);
         resolve(false);
       }
     });
@@ -1163,7 +1163,7 @@ class CheckPopup {
           // Check for connection errors
           if (chrome.runtime.lastError) {
             console.warn(
-              "Bailey Guard: Background script connection failed:",
+              "Marshall Bailey: Background script connection failed:",
               chrome.runtime.lastError.message
             );
 
@@ -1270,7 +1270,7 @@ class CheckPopup {
         }
       });
     } catch (error) {
-      console.error("Bailey Guard: Failed to initialize theme:", error);
+      console.error("Marshall Bailey: Failed to initialize theme:", error);
       // Fallback to system preference
       const systemDark = window.matchMedia(
         "(prefers-color-scheme: dark)"
@@ -1341,11 +1341,11 @@ class CheckPopup {
       // First, ensure background script is awake (wake it up with a ping)
       const backgroundReady = await this.checkBackgroundScript();
       if (!backgroundReady) {
-        console.warn("Bailey Guard: Background script not responding, trying to wake it up");
+        console.warn("Marshall Bailey: Background script not responding, trying to wake it up");
         // Try to wake it up by waiting a bit
         const wakeupSuccess = await this.waitForBackgroundScript();
         if (!wakeupSuccess) {
-          console.error("Bailey Guard: Failed to wake up background script");
+          console.error("Marshall Bailey: Failed to wake up background script");
           this.showNotification(
             "Extension background script is not responding. Try reloading the extension.",
             "error"
@@ -1360,7 +1360,7 @@ class CheckPopup {
         { type: "RETRIGGER_ANALYSIS" },
         (response) => {
           if (chrome.runtime.lastError) {
-            console.error("Bailey Guard: Failed to communicate with page:", chrome.runtime.lastError);
+            console.error("Marshall Bailey: Failed to communicate with page:", chrome.runtime.lastError);
             this.showNotification(
               "Failed to communicate with page. Content script may not be loaded on this page.",
               "error"

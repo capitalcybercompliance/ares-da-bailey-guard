@@ -1,4 +1,4 @@
-/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
+/* Modified 2026-10-09 by Cyber Grants Alliance for Marshall Bailey by Cyber Grants Alliance. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Check - Options Page JavaScript
  * Comprehensive settings management and configuration interface
@@ -463,7 +463,7 @@ class CheckOptions {
       console.warn("Options: Using fallback branding configuration");
       this.brandingConfig = {
         companyName: "Cyber Grants Alliance",
-        productName: "Bailey Guard by CGA",
+        productName: "Marshall Bailey by Cyber Grants Alliance",
         supportUrl: "https://www.cybergrantsalliance.org/",
         privacyPolicyUrl: "https://www.cybergrantsalliance.org/",
         aboutUrl: "https://www.cybergrantsalliance.org/",
@@ -474,7 +474,7 @@ class CheckOptions {
       console.error("Error loading branding configuration:", error);
       this.brandingConfig = {
         companyName: "Cyber Grants Alliance",
-        productName: "Bailey Guard by CGA",
+        productName: "Marshall Bailey by Cyber Grants Alliance",
         supportUrl: "https://www.cybergrantsalliance.org/",
         privacyPolicyUrl: "https://www.cybergrantsalliance.org/",
         aboutUrl: "https://www.cybergrantsalliance.org/",
@@ -836,12 +836,12 @@ class CheckOptions {
   applyBranding() {
     // Update sidebar branding
     document.getElementById("sidebarTitle").textContent =
-      this.brandingConfig?.productName || "Bailey Guard";
+      this.brandingConfig?.productName || "Marshall Bailey";
 
     // Update mobile logo text
     const mobileLogoText = document.getElementById("mobileLogoText");
     if (mobileLogoText) {
-      mobileLogoText.textContent = this.brandingConfig?.productName || "Bailey Guard";
+      mobileLogoText.textContent = this.brandingConfig?.productName || "Marshall Bailey";
     }
 
     // Function to set logo src with fallback
@@ -1038,7 +1038,7 @@ class CheckOptions {
         subtitle: "View security events and extension activity",
       },
       about: {
-        title: "About Bailey Guard by Cyber Grants Alliance",
+        title: "About Marshall Bailey by Cyber Grants Alliance",
         subtitle:
           "A no cost guard dog for your Microsoft 365 password",
       },

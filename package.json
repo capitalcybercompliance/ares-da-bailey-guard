@@ -1,7 +1,7 @@
 {
-  "name": "bailey-guard-by-cga",
-  "version": "1.0.4",
-  "description": "Bailey Guard by CGA: a no cost Chrome extension that warns before you type your Microsoft 365 password into a fake sign in page. Based on Check by CyberDrain.",
+  "name": "marshall-bailey-by-cga",
+  "version": "1.1.0",
+  "description": "Marshall Bailey by Cyber Grants Alliance: a no cost Chrome extension that warns before you type your Microsoft 365 password into a fake sign in page. Based on Check by CyberDrain.",
   "scripts": {
     "test": "node --test tests/",
     "package": "bun scripts/package.ts"

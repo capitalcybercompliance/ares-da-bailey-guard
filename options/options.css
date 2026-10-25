@@ -1,4 +1,4 @@
-/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
+/* Modified 2026-10-09 by Cyber Grants Alliance for Marshall Bailey by Cyber Grants Alliance. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Check - Options Page Styles
  * Comprehensive styling for the extension settings page
@@ -2877,7 +2877,7 @@ body {
   color: #D4AF37;
 }
 
-/* Bailey Guard by CGA additions */
+/* Marshall Bailey by Cyber Grants Alliance additions */
 .bailey-about-img {
   width: 96px !important;
   height: auto !important;

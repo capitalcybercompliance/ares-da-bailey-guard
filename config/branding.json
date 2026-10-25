@@ -1,6 +1,6 @@
 {
   "companyName": "Cyber Grants Alliance",
-  "productName": "Bailey Guard by CGA",
+  "productName": "Marshall Bailey by Cyber Grants Alliance",
   "supportUrl": "https://www.cybergrantsalliance.org/",
   "privacyPolicyUrl": "https://www.cybergrantsalliance.org/",
   "aboutUrl": "https://www.cybergrantsalliance.org/",
@@ -45,12 +45,12 @@
   "features": {
     "welcomeMessage": "Hi, I am Bailey. I watch for fake Microsoft 365 sign in pages so you do not hand your password to a scammer.",
     "tagline": "A no cost phishing guard from Cyber Grants Alliance",
-    "securityBadgeText": "Checked by Bailey Guard",
+    "securityBadgeText": "Checked by Marshall Bailey",
     "blockedPageTitle": "Woof. Bailey stopped a fake sign in page.",
     "blockedPageMessage": "This is not a real Microsoft sign in page. Do not enter your password."
   },
   "customText": {
-    "extensionDescription": "Bailey Guard by CGA warns you before you type your Microsoft 365 password into a fake sign in page. Detection runs inside your browser.",
+    "extensionDescription": "Marshall Bailey by Cyber Grants Alliance warns you before you type your Microsoft 365 password into a fake sign in page. Detection runs inside your browser.",
     "securityFeatures": [
       "Spots fake Microsoft 365 sign in pages",
       "Confirms real Microsoft sign in pages",
@@ -66,7 +66,7 @@
   },
   "licensing": {
     "license": "AGPL-3.0",
-    "basedOn": "Bailey Guard by CGA is based on Check by CyberDrain (AGPL 3.0)",
+    "basedOn": "Marshall Bailey by Cyber Grants Alliance is based on Check by CyberDrain (AGPL 3.0)",
     "upstream": "https://github.com/CyberDrain/Check"
   },
   "deployment": {

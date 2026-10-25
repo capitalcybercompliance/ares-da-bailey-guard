@@ -1,4 +1,4 @@
-/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
+/* Modified 2026-10-09 by Cyber Grants Alliance for Marshall Bailey by Cyber Grants Alliance. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Blocked Page JavaScript - CSP Compliant External Script
  * Handles URL defanging, branding, and user interactions for blocked pages
@@ -157,7 +157,7 @@ async function reportFalsePositive() {
       version: "1.0",
       type: "false_positive_report",
       timestamp: new Date().toISOString(),
-      source: "Bailey Guard by CGA",
+      source: "Marshall Bailey by Cyber Grants Alliance",
       extensionVersion: chrome.runtime.getManifest().version,
       data: {
         reportedUrl: document.getElementById("blockedUrl").textContent,
@@ -511,7 +511,7 @@ async function loadBranding() {
 
       // Apply branding from background script
       const companyName =
-        storageResult.productName || storageResult.companyName || "Bailey Guard by CGA";
+        storageResult.productName || storageResult.companyName || "Marshall Bailey by Cyber Grants Alliance";
       console.log("Setting product name from background to:", companyName);
       document.getElementById("companyName").textContent = companyName;
       document.title = `Blocked by ${companyName}`;
@@ -598,7 +598,7 @@ async function loadBranding() {
         console.log("Loaded branding from file:", brandingConfig);
 
         const companyName =
-          brandingConfig.productName || brandingConfig.companyName || "Bailey Guard by CGA";
+          brandingConfig.productName || brandingConfig.companyName || "Marshall Bailey by Cyber Grants Alliance";
         console.log("Setting product name from file to:", companyName);
         document.getElementById("companyName").textContent = companyName;
         document.title = `Blocked by ${companyName}`;
@@ -614,8 +614,8 @@ async function loadBranding() {
   const currentCompanyName = document.getElementById("companyName").textContent;
   if (!currentCompanyName || currentCompanyName.trim() === "") {
     console.log("No company name set, using final fallback");
-    document.getElementById("companyName").textContent = "Bailey Guard by CGA";
-    document.title = "Blocked by Bailey Guard by CGA";
+    document.getElementById("companyName").textContent = "Marshall Bailey by Cyber Grants Alliance";
+    document.title = "Blocked by Marshall Bailey by Cyber Grants Alliance";
   }
 
   // Hide contact button by default if no background config was loaded

@@ -1,4 +1,4 @@
-/* Modified 2026-10-09 by Cyber Grants Alliance for Bailey Guard by CGA. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
+/* Modified 2026-10-09 by Cyber Grants Alliance for Marshall Bailey by Cyber Grants Alliance. Based on Check by CyberDrain (https://github.com/CyberDrain/Check), AGPL 3.0. */
 /**
  * Policy Manager for Check
  * Handles enterprise policies, permissions, and compliance enforcement
@@ -20,9 +20,9 @@ export class PolicyManager {
     try {
       await this.loadPolicies();
       this.isInitialized = true;
-      logger.log("Bailey Guard: Policy manager initialized successfully");
+      logger.log("Marshall Bailey: Policy manager initialized successfully");
     } catch (error) {
-      logger.error("Bailey Guard: Failed to initialize policy manager:", error);
+      logger.error("Marshall Bailey: Failed to initialize policy manager:", error);
       throw error;
     }
   }
@@ -49,9 +49,9 @@ export class PolicyManager {
       // Set compliance mode based on enterprise policies
       this.complianceMode = this.enterprisePolicies?.complianceMode || false;
 
-      logger.log("Bailey Guard: Policies loaded successfully");
+      logger.log("Marshall Bailey: Policies loaded successfully");
     } catch (error) {
-      logger.error("Bailey Guard: Failed to load policies:", error);
+      logger.error("Marshall Bailey: Failed to load policies:", error);
       this.loadDefaultPolicies();
     }
   }
@@ -65,7 +65,7 @@ export class PolicyManager {
       
       // Firefox uses 3rdparty extension policies instead of managed storage
       if (this.isFirefox) {
-        logger.log("Bailey Guard: Firefox detected, policies loaded via 3rdparty extension settings (handled by ConfigManager)");
+        logger.log("Marshall Bailey: Firefox detected, policies loaded via 3rdparty extension settings (handled by ConfigManager)");
         // Firefox policies are loaded through the extension's configuration system
         // which reads from browser.storage.managed automatically
         return {};
@@ -75,7 +75,7 @@ export class PolicyManager {
       const managedPolicies = await safe(storage.managed.get(["policies"]));
       return managedPolicies?.policies || {};
     } catch (error) {
-      logger.log("Bailey Guard: No enterprise policies available");
+      logger.log("Marshall Bailey: No enterprise policies available");
       return {};
     }
   }
@@ -218,7 +218,7 @@ export class PolicyManager {
           return result;
       }
     } catch (error) {
-      logger.error("Bailey Guard: Policy check failed:", error);
+      logger.error("Marshall Bailey: Policy check failed:", error);
       result.allowed = false;
       result.reason = "Policy check failed";
       return result;
@@ -488,9 +488,9 @@ export class PolicyManager {
       await safe(storage.local.set({ policies: updatedPolicies }));
       this.policies = updatedPolicies;
 
-      logger.log("Bailey Guard: Policies updated");
+      logger.log("Marshall Bailey: Policies updated");
     } catch (error) {
-      logger.error("Bailey Guard: Failed to update policies:", error);
+      logger.error("Marshall Bailey: Failed to update policies:", error);
       throw error;
     }
   }
@@ -544,7 +544,7 @@ export class PolicyManager {
       const auditLog = await safe(storage.local.get(["auditLog"]));
       return auditLog?.auditLog || [];
     } catch (error) {
-      logger.error("Bailey Guard: Failed to get audit log:", error);
+      logger.error("Marshall Bailey: Failed to get audit log:", error);
       return [];
     }
   }
@@ -574,12 +574,12 @@ export class PolicyManager {
 
       await safe(storage.local.set({ auditLog: logs }));
     } catch (error) {
-      logger.error("Bailey Guard: Failed to log audit event:", error);
+      logger.error("Marshall Bailey: Failed to log audit event:", error);
     }
   }
 
   loadDefaultPolicies() {
     this.policies = this.getDefaultPolicies();
-    logger.log("Bailey Guard: Using default policies");
+    logger.log("Marshall Bailey: Using default policies");
   }
 }
